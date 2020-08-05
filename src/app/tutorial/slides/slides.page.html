@@ -1,0 +1,31 @@
+<ion-content fullscreen class="ion-padding">
+  <ion-slides #tutorial>
+
+    <ion-slide>
+      <div class="slide">
+        <ion-label class="title-text" color="primary">COMPARTE TU UBICACIÓN </ion-label> <ion-label class="title-text">Y REVISA LOS LOCALES MÁS CERCANOS</ion-label>
+        <img class="img-adjust mt-30 mb-30" src="../../../assets/images/slide1.svg"/>
+        <img class="img-adjust mb-30" src="../../../assets/images/linea1.svg"/>
+        <ion-button fill="outline" color="primary" (click)="tutorial.slideNext()">CONTINUAR</ion-button>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide">
+        <ion-label class="title-text" >ELIJE LO QUE QUIERES COMPRAR </ion-label> <ion-label class="title-text" color="primary">Y ORDENA DESDE EL APP FÁCILMENTE</ion-label>
+        <img class="img-adjust mt-30 mb-30" src="../../../assets/images/slide2.svg"/>
+        <img class="img-adjust mb-30" src="../../../assets/images/linea2.svg"/>
+        <ion-button fill="outline" color="primary" (click)="tutorial.slideNext()">CONTINUAR</ion-button>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide">
+        <ion-label class="title-text" color="primary">RECIBE TUS COMPRAS </ion-label> <ion-label class="title-text">DE UNA FORMA SEGURA</ion-label>
+        <img class="img-adjust mt-30 mb-30" src="../../../assets/images/slide3.svg"/>
+        <img class="img-adjust mb-30" src="../../../assets/images/linea3.svg"/>
+        <ion-button fill="outline" color="primary">COMENZAR</ion-button>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
