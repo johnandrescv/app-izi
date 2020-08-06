@@ -7,8 +7,16 @@
       </ion-col>
       <ion-col size="12">
         <ion-item class="input-text"> 
-          <ion-input placeholder="Ingresa tu dirección"></ion-input>
+          <ion-input [(ngModel)]="ubicacion.direccion" (ionInput)="UpdateSearchResults()" placeholder="Ingresa tu dirección"></ion-input>
         </ion-item>
+        <ion-list [hidden]="autocompleteItems.length == 0">
+          <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
+            {{ item.description }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size="12">
+        <div #map id="map"  style="height: 300px"></div>
       </ion-col>
     </ion-row>
   </ion-grid>
