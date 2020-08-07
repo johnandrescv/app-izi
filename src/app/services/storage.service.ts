@@ -6,7 +6,20 @@ import { Storage } from '@ionic/storage';
 })
 export class StorageService {
 
+  ubicacion: any;
   constructor(private storage: Storage) { }
+
+  guardarUbicacion(ubicacion: any) {
+    this.storage.set('ubicacion', ubicacion);
+  }
+
+  cargarUbicacion() {
+    return this.storage.get('ubicacion');
+  }
+
+  removeUbicacion() {
+    return this.storage.remove('ubicacion');
+  }
 
   guardarTutorial() {
     this.storage.set('tutorial', true);

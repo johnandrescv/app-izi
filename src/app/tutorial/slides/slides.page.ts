@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StorageService } from './../../services/storage.service';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class SlidesPage implements OnInit {
 
-  @ViewChild('tutorial', {static: true}) tutorial;
   isLastTutorial = false;
   constructor(private storageServ: StorageService, private router: Router) { }
 
@@ -19,11 +18,5 @@ export class SlidesPage implements OnInit {
   saveTutorial() {
     this.storageServ.guardarTutorial();
     this.router.navigateByUrl('/ubicacion');
-  }
-
-  goNext() {
-    this.tutorial.slideNext().then(async () => {
-      this.isLastTutorial = await this.tutorial.isEnd();
-    });
   }
 }

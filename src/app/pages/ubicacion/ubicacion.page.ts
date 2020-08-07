@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { environment } from 'src/environments/environment';
+import { StorageService } from '../../services/storage.service';
+import { Router } from '@angular/router';
 declare var google;
 
 @Component({
@@ -18,14 +20,17 @@ export class UbicacionPage implements OnInit {
     lng: 0
   };
   marker: any;
-  conf: any;
   autocompleteItems = [];
   GoogleAutocomplete: any;
+  GoogleGeocoder: any;
 
   constructor(private geolocation: Geolocation,
               private nativeGeocoder: NativeGeocoder,
+              private storageServ: StorageService,
+              private router: Router,
               public zone: NgZone) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+    this.GoogleGeocoder = new google.maps.Geocoder();
   }
 
   ngOnInit() {
@@ -61,14 +66,9 @@ export class UbicacionPage implements OnInit {
     this.marker.setIcon('./assets/images/marker.svg');
 
     google.maps.event.addListener(this.map, 'click', (event: any) => {
-      const result = [event.latLng.lat(), event.latLng.lng()];
-      this.conf = {
-        contador: 0,
-        deltaLat: (result[0] - this.ubicacion.lat) / 100,
-        deltaLng: (result[1] - this.ubicacion.lng) / 100,
-        delay: 10,
-      };
-      this.moveMarker();
+      this.ubicacion.lat = event.latLng.lat();
+      this.ubicacion.lng = event.latLng.lng();
+      this.moveMarker(true);
     });
   }
 
@@ -97,13 +97,12 @@ export class UbicacionPage implements OnInit {
       });
   }
 
-  getCoordsFromAddress(dir) {
-    this.nativeGeocoder.forwardGeocode(dir).then((result) => {
-        console.log(result);
-      })
-      .catch((error: any) => {
-        console.log(error);
+  getCoordsFromAddress(placeId) {
+    return new Promise(resolve => {
+      this.GoogleGeocoder.geocode({"placeId": placeId}, (result, status) => {
+        resolve(result[0]);
       });
+    });
   }
 
   UpdateSearchResults(){
@@ -124,14 +123,13 @@ export class UbicacionPage implements OnInit {
     });
   }
 
-  SelectSearchResult(item) {
-    console.log(item);
-    this.getCoordsFromAddress(item.description);
-
-    // this.ubicacion = {
-    //   direccion: item.description,
-
-    // };
+  async SelectSearchResult(item) {
+    this.autocompleteItems = [];
+    this.ubicacion.direccion = item.description;
+    const data: any = await this.getCoordsFromAddress(item.place_id);
+    this.ubicacion.lat = data.geometry.location.lat(); 
+    this.ubicacion.lng = data.geometry.location.lng();
+    this.moveMarker(false);
   }
 
   ClearAutocomplete(){
@@ -139,17 +137,17 @@ export class UbicacionPage implements OnInit {
     this.ubicacion.direccion = '';
   }
 
-  moveMarker() {
-    this.ubicacion.lat += this.conf.deltaLat;
-    this.ubicacion.lng += this.conf.deltaLng;
+  moveMarker(checkAddress) {
     const latlng = new google.maps.LatLng(this.ubicacion.lat, this.ubicacion.lng);
-    // marker.setTitle("Latitude:"+position[0]+" | Longitude:"+position[1]);
+    this.map.setCenter(latlng);
     this.marker.setPosition(latlng);
-    if (this.conf.contador !== 100) {
-        this.conf.contador++;
-        setTimeout( () => this.moveMarker(), 10);
-    } else {
+    if(checkAddress) {
       this.getAddressFromCoords(this.ubicacion.lat, this.ubicacion.lng);
     }
+  }
+
+  saveUbicacion() {
+    this.storageServ.guardarUbicacion(this.ubicacion);
+    this.router.navigateByUrl('/home');
   }
 }
