@@ -19,17 +19,30 @@ export class AppComponent {
     private storageServ: StorageService,
     private router: Router
   ) {
-    this.initializeApp();
+      this.initializeApp();
   }
 
-  async initializeApp() {
-    const tutorial = await this.storageServ.cargarTutorial();
-    if (tutorial) {
-      this.router.navigateByUrl('/ubicacion');
-    }
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+  initializeApp() {
+    this.storageServ.cargarTutorial().then(async (tutorial) => {
+      this.setRoot(tutorial);
+      this.platform.ready().then(() => {
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+      });
     });
+  }
+
+  async setRoot(tutorial) {
+    if (tutorial) {
+      const ubicacion = await this.storageServ.cargarUbicacion();
+      if (ubicacion) {
+        this.storageServ.ubicacion = ubicacion;
+        this.router.navigateByUrl('/home');
+      } else {
+        this.router.navigateByUrl('/ubicacion');
+      }
+    } else {
+      this.router.navigateByUrl('/slides');
+    }
   }
 }

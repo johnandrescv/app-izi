@@ -63,7 +63,7 @@ export class UbicacionPage implements OnInit {
       map: this.map,
     });
 
-    this.marker.setIcon('./assets/images/marker.svg');
+    this.marker.setIcon('./assets/images/marker.png');
 
     google.maps.event.addListener(this.map, 'click', (event: any) => {
       this.ubicacion.lat = event.latLng.lat();

@@ -7,11 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./tutorial/slides/slides.module').then( m => m.SlidesPageModule)
   },
   {
-    path: '',
-    redirectTo: 'slides',
-    pathMatch: 'full'
-  },
-  {
     path: 'ubicacion',
     loadChildren: () => import('./pages/ubicacion/ubicacion.module').then( m => m.UbicacionPageModule)
   },
