@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'afiliados/:id',
+    loadChildren: () => import('./pages/afiliados/afiliados.module').then( m => m.AfiliadosPageModule)
+  },
 ];
 
 @NgModule({

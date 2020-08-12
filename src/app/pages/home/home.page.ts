@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestService } from '../../services/request.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  categorias = [];
+  constructor(private requestServ: RequestService) { }
 
   ngOnInit() {
+    this.getCategorias();
   }
 
+  async getCategorias() {
+    const response = await this.requestServ.getCategorias();
+    if (response[0]) {
+      this.categorias = response[1];
+    }
+  }
 }

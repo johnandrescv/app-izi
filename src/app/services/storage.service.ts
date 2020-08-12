@@ -10,6 +10,7 @@ export class StorageService {
   constructor(private storage: Storage) { }
 
   guardarUbicacion(ubicacion: any) {
+    this.ubicacion = ubicacion;
     this.storage.set('ubicacion', ubicacion);
   }
 
