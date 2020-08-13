@@ -13,7 +13,7 @@ export class AfiliadosPage implements OnInit {
   idCategoria: any;
   afiliados = [];
   constructor(private activatedRoute: ActivatedRoute,
-              private navCtrl: NavController,
+              public navCtrl: NavController,
               private requestServ: RequestService) { }
 
   ngOnInit() {
