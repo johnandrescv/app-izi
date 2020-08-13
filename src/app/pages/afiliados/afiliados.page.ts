@@ -25,7 +25,6 @@ export class AfiliadosPage implements OnInit {
     const response = await this.requestServ.getAfiliadosByCategoria(this.idCategoria);
     if (response[0]) {
       this.afiliados = response[1];
-      console.log(this.afiliados);
     }
   }
 

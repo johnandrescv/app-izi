@@ -54,4 +54,18 @@ export class RequestService {
       });
     });
   }
+
+  async getProductosBySucursal(id: any) {
+    await this.controllersServ.showLoading('Cargando productos...');
+    return new Promise(resolve => {
+      this.http.get(`${environment.apiUrl}/sucursales/${id}/productos`).subscribe((response: any) => {
+        resolve([true, response.respuesta]);
+        this.controllersServ.loading.dismiss();
+      }, (error: any) => {
+        this.controllersServ.loading.dismiss();
+        this.controllersServ.errorToast(error.error.message);
+        resolve([false]);
+      });
+    });
+  }
 }

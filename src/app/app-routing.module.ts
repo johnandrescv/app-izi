@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'slides',
     loadChildren: () => import('./tutorial/slides/slides.module').then( m => m.SlidesPageModule)
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'afiliados/:id',
     loadChildren: () => import('./pages/afiliados/afiliados.module').then( m => m.AfiliadosPageModule)
+  },
+  {
+    path: 'productos/:id/:name',
+    loadChildren: () => import('./pages/productos/productos.module').then( m => m.ProductosPageModule)
   },
 ];
 
