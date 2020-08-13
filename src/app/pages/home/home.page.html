@@ -1,5 +1,8 @@
 <ion-content>
   <app-basic-header></app-basic-header>
+  <ion-toolbar>
+    <ion-searchbar mode="md" color="search" placeholder="Buscar..." animated debounce="300" (ionChange)="buscar($event)"></ion-searchbar>
+  </ion-toolbar> 
   <ion-row class="ion-justify-content-center">
     <ion-col *ngFor="let categoria of categorias" size="12" [routerLink]="['/afiliados', categoria.id_categoria]">
       <img [src]="categoria.imagen">

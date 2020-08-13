@@ -1,14 +1,22 @@
 <ion-content>
   <app-basic-header></app-basic-header>
+<ion-toolbar> 
+  <ion-row>
+    <ion-col size="2">
+      <ion-button color="danger" (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+    </ion-col>
+    <ion-col size="10">
+        <ion-searchbar mode="md" color="search" placeholder="Buscar..." animated debounce="300" (ionChange)="buscar($event)"></ion-searchbar>
+    </ion-col>
+  </ion-row>
+</ion-toolbar> 
   <ion-list>
     <ion-item *ngFor="let afiliado of afiliados">
-      <ion-avatar slot="start">
-        <img src="./avatar-finn.png">
-      </ion-avatar>
+      <ion-img [src]="afiliado.imagen" slot="start"></ion-img>
       <ion-label>
-        <h2>Finn</h2>
-        <p>Listen, I've had a pretty messed up day...</p>
-        <h3>I'm a big deal</h3>
+        <h2>{{ afiliado.nombre_afiliado }}</h2>
+        <p>{{ afiliado.descripcion_afiliado }}</p>
+        <ion-badge class="mr-5 mt-5" color="primary"><ion-icon name="pin"></ion-icon> {{ afiliado.referencia }}</ion-badge><ion-badge class="mr-5 mt-5" color="primary"><ion-icon name="time"></ion-icon> {{ afiliado.hora_entrada }} - {{ afiliado.hora_salida }}</ion-badge>
       </ion-label>
     </ion-item>
   </ion-list>

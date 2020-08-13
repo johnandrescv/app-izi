@@ -21,4 +21,8 @@ export class HomePage implements OnInit {
       this.categorias = response[1];
     }
   }
+
+  buscar(e: any) {
+
+  }
 }

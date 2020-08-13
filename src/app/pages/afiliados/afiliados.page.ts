@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestService } from '../../services/request.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-afiliados',
@@ -12,6 +13,7 @@ export class AfiliadosPage implements OnInit {
   idCategoria: any;
   afiliados = [];
   constructor(private activatedRoute: ActivatedRoute,
+              private navCtrl: NavController,
               private requestServ: RequestService) { }
 
   ngOnInit() {
@@ -25,5 +27,9 @@ export class AfiliadosPage implements OnInit {
       this.afiliados = response[1];
       console.log(this.afiliados);
     }
+  }
+
+  buscar(e: any) {
+
   }
 }

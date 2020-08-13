@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
+import { NavController } from '@ionic/angular';
 declare var google;
 
 @Component({
@@ -27,9 +28,10 @@ export class UbicacionPage implements OnInit {
 
   constructor(private geolocation: Geolocation,
               private nativeGeocoder: NativeGeocoder,
-              private storageServ: StorageService,
               private router: Router,
               private requestServ: RequestService,
+              public storageServ: StorageService,
+              public navCtrl: NavController, 
               public zone: NgZone) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.GoogleGeocoder = new google.maps.Geocoder();

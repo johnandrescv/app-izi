@@ -37,7 +37,6 @@ export class AppComponent {
       const ubicacion = await this.storageServ.cargarUbicacion();
       if (ubicacion) {
         this.storageServ.ubicacion = ubicacion;
-        this.router.navigateByUrl('/home');
       } else {
         this.router.navigateByUrl('/ubicacion');
       }
