@@ -44,7 +44,7 @@ export class RequestService {
   async getAfiliadosByCategoria(id: any) {
     await this.controllersServ.showLoading('Cargando categorías...');
     return new Promise(resolve => {
-      this.http.get(`${environment.apiUrl}/categorias/${id}/sucursales?latitud=${this.storageServ.ubicacion.lat}&longitud=${this.storageServ.ubicacion.lng}`).subscribe((response: any) => {
+      this.http.get(`${environment.apiUrl}/categorias/${id}/sucursales/latitud/${this.storageServ.ubicacion.latitud}/longitud/${this.storageServ.ubicacion.longitud}`).subscribe((response: any) => {
         resolve([true, response.respuesta]);
         this.controllersServ.loading.dismiss();
       }, (error: any) => {

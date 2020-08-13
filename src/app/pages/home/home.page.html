@@ -2,7 +2,7 @@
   <app-basic-header></app-basic-header>
   <ion-row class="ion-justify-content-center">
     <ion-col *ngFor="let categoria of categorias" size="12" [routerLink]="['/afiliados', categoria.id_categoria]">
-      <img src="../../../assets/images/test.png">
+      <img [src]="categoria.imagen">
     </ion-col>
   </ion-row>
 </ion-content>

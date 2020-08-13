@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>afiliados</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <app-basic-header></app-basic-header>
+  <ion-list>
+    <ion-item *ngFor="let afiliado of afiliados">
+      <ion-avatar slot="start">
+        <img src="./avatar-finn.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>Finn</h2>
+        <p>Listen, I've had a pretty messed up day...</p>
+        <h3>I'm a big deal</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
