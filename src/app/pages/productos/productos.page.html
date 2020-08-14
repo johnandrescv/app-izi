@@ -1,8 +1,13 @@
 <app-detail-header [title]="sucursalName"></app-detail-header>
 <ion-content>
     <ion-segment (ionChange)="cambioCategoria($event)">
-        <ion-segment-button *ngFor="let categoria of data" [ngClass]="segment.value === categoria.id_afiliado_categoria ? 'segment-button-checked': 'ion-btn-no-selected'" mode="md" [value]="categoria.id_afiliado_categoria">
+        <ion-segment-button *ngFor="let categoria of categorias" [ngClass]="segment.value === categoria.id_afiliado_categoria ? 'segment-button-checked': ''" mode="md" [value]="categoria.id_afiliado_categoria">
             <ion-label class="ion-text-capitalize">{{ categoria.nombre }}</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <ion-segment class="subcategorias-segmented" (ionChange)="cambioSubcategoria($event)">
+        <ion-segment-button class="subcategorias-seg-btn" *ngFor="let subcategoria of subcategorias" [ngClass]="subcategoriaSeleccion == subcategoria.id_subcategoria && 'subcategorias-selected'" mode="md" [value]="subcategoria.id_subcategoria">
+            <ion-label color="light" class="ion-text-capitalize">{{ subcategoria.nombre }}</ion-label>
         </ion-segment-button>
     </ion-segment>
 </ion-content>

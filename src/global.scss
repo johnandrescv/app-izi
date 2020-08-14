@@ -238,3 +238,24 @@ ion-segment {
 .ion-btn-no-selected {
     border-bottom: 1px #6b6b6b solid;
 }
+
+.subcategorias-segmented {
+    border-radius: 0px;
+}
+
+.subcategorias-seg-btn{
+    margin-bottom: 10px;
+    background: var(--ion-color-primary);
+    font-size: 12px;
+}
+
+.subcategorias-selected::before {
+    content: "";
+	width: 0px;
+	height: 0px;
+	border: 0.8em solid transparent;
+    position: absolute;
+	left: 45%;
+	bottom: -20px;
+	border-top: 10px solid var(--ion-color-primary);
+}

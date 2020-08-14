@@ -12,7 +12,9 @@ export class ProductosPage implements OnInit {
   @ViewChild(IonSegment, {static: true}) segment: IonSegment;
   sucursalId: any;
   sucursalName: any;
-  data = [];
+  categorias = [];
+  subcategorias = [];
+  subcategoriaSeleccion = 0;
   constructor(private activatedRoute: ActivatedRoute,
               private requestServ: RequestService) { }
 
@@ -25,12 +27,17 @@ export class ProductosPage implements OnInit {
   async getData() {
     const response = await this.requestServ.getProductosBySucursal(this.sucursalId);
     if (response[0]) {
-      this.data = response[1].categorias;
-      this.segment.value = this.data[0].id_afiliado_categoria;
+      this.categorias = response[1].categorias;
+      this.segment.value = this.categorias[0].id_afiliado_categoria;
     }
   }
 
   cambioCategoria(event) {
     this.segment.value = event.detail.value;
+    this.subcategorias = this.categorias.find((data) => data.id_afiliado_categoria === Number(event.detail.value)).subcategorias;
+  }
+
+  cambioSubcategoria(event) {
+    this.subcategoriaSeleccion = event.detail.value;
   }
 }
