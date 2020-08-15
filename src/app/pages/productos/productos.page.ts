@@ -14,6 +14,7 @@ export class ProductosPage implements OnInit {
   sucursalName: any;
   categorias = [];
   subcategorias = [];
+  productos = [];
   subcategoriaSeleccion = 0;
   constructor(private activatedRoute: ActivatedRoute,
               private requestServ: RequestService) { }
@@ -33,11 +34,22 @@ export class ProductosPage implements OnInit {
   }
 
   cambioCategoria(event) {
+    this.subcategorias = [];
+    this.productos = [];
     this.segment.value = event.detail.value;
-    this.subcategorias = this.categorias.find((data) => data.id_afiliado_categoria === Number(event.detail.value)).subcategorias;
+    const localCategoria = this.categorias.find((data) => data.id_afiliado_categoria === Number(event.detail.value));
+    if (localCategoria.subcategorias) {
+      this.subcategorias = localCategoria.subcategorias;
+      this.subcategoriaSeleccion = this.subcategorias[0].id_subcategoria;
+      this.productos = this.subcategorias[0].productos;
+    } else {
+      this.productos = localCategoria.productos;
+    }
   }
 
   cambioSubcategoria(event) {
+    this.productos = [];
     this.subcategoriaSeleccion = event.detail.value;
+    this.productos = this.subcategorias.find((data) => data.id_subcategoria === Number(event.detail.value)).productos;
   }
 }
