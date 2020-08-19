@@ -11,23 +11,26 @@ import { IonSegment } from '@ionic/angular';
 export class ProductosPage implements OnInit {
   @ViewChild(IonSegment, {static: true}) segment: IonSegment;
   sucursalId: any;
-  sucursalName: any;
+  sucursalName = '';
+  afiliado: any;
   categorias = [];
   subcategorias = [];
   productos = [];
   subcategoriaSeleccion = 0;
+  cantidad = 1;
   constructor(private activatedRoute: ActivatedRoute,
               private requestServ: RequestService) { }
 
   ngOnInit() {
     this.sucursalId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.sucursalName = this.activatedRoute.snapshot.paramMap.get('name');
     this.getData();
   }
 
   async getData() {
     const response = await this.requestServ.getProductosBySucursal(this.sucursalId);
     if (response[0]) {
+      this.sucursalName = response[1].afiliado.nombres;
+      this.afiliado = response[1].afiliado;
       this.categorias = response[1].categorias;
       this.segment.value = this.categorias[0].id_afiliado_categoria;
     }
@@ -41,15 +44,26 @@ export class ProductosPage implements OnInit {
     if (localCategoria.subcategorias) {
       this.subcategorias = localCategoria.subcategorias;
       this.subcategoriaSeleccion = this.subcategorias[0].id_subcategoria;
-      this.productos = this.subcategorias[0].productos;
+      this.setProductos();
     } else {
-      this.productos = localCategoria.productos;
+      this.setProductos(false, localCategoria.productos);
     }
   }
 
   cambioSubcategoria(event) {
-    this.productos = [];
     this.subcategoriaSeleccion = event.detail.value;
-    this.productos = this.subcategorias.find((data) => data.id_subcategoria === Number(event.detail.value)).productos;
+    this.setProductos();
+  }
+
+  setProductos(subcategoria = true, info = []) {
+    this.productos = [];
+    const productos = (subcategoria) ? this.subcategorias.find((data) => data.id_subcategoria === Number(this.subcategoriaSeleccion)).productos : info;
+    for(const producto of productos) {
+      this.productos.push({info: producto, cantidad: 0});
+    }
+  }
+
+  operation(tipo, index) {
+    
   }
 }

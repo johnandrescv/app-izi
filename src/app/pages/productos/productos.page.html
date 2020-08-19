@@ -1,5 +1,6 @@
 <app-detail-header [title]="sucursalName"></app-detail-header>
 <ion-content>
+    <app-afiliado-detail [afiliado]="afiliado"></app-afiliado-detail>
     <ion-segment (ionChange)="cambioCategoria($event)">
         <ion-segment-button *ngFor="let categoria of categorias" [ngClass]="segment.value === categoria.id_afiliado_categoria ? 'segment-button-checked': ''" mode="md" [value]="categoria.id_afiliado_categoria">
             <ion-label class="ion-text-capitalize">{{ categoria.nombre }}</ion-label>
@@ -11,15 +12,32 @@
         </ion-segment-button>
     </ion-segment>
     <ion-row class="ml-10 mr-10">
-        <ion-col class="pl-10 pr-10" *ngFor="let producto of productos" size="6">
-            <img class="img-producto" [src]="producto.imagen" />
-            <ion-label class="title-producto">{{ producto.producto }}</ion-label>
+        <ion-col class="pl-10 pr-10" *ngFor="let producto of productos; let i = index;" size="12">
             <ion-row class="ion-align-items-center">
-                <ion-col class="text-left" size="6">
-                    <ion-label class="price-producto" color="success">{{ producto.precio | currency:'USD' }}</ion-label>
+                <ion-col size="6">
+                    <img class="img-producto" [src]="producto.info.imagen" />
                 </ion-col>
-                <ion-col class="text-right" size="6">
-                    <ion-button size="small" color="primary"><ion-icon name="add"></ion-icon></ion-button>
+                <ion-col size="6">
+                    <ion-label class="title-producto">{{ producto.info.producto }}</ion-label>
+                    <ion-row>
+                        <ion-col class="no-padding" size="12">
+                            <ion-label class="price-producto" color="success">{{ producto.info.precio | currency:'USD' }}</ion-label>
+                        </ion-col>
+                        <ion-col class="no-padding" size="12">
+                            <ion-item-group *ngIf="producto.info.is_plato === '0'" mode="md">
+                                <ion-button size="small" mode="md" [disabled]="producto.cantidad === 0" value="minus" (click)="operation(false, i)">
+                                    <ion-icon name="remove"></ion-icon>
+                                </ion-button>
+                                <ion-button size="small" color="light" mode="md" disabled>
+                                    <ion-label><strong>{{ producto.cantidad }}</strong></ion-label>
+                                </ion-button>
+                                <ion-button size="small" mode="md" value="plus" (click)="operation(true, i)">
+                                    <ion-icon name="add"></ion-icon>
+                                </ion-button>
+                            </ion-item-group>
+                            <ion-button *ngIf="producto.info.is_plato === '1'" size="small" color="primary"><ion-icon name="restaurant"></ion-icon></ion-button>
+                        </ion-col>
+                    </ion-row>
                 </ion-col>
             </ion-row>
         </ion-col>

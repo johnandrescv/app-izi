@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/afiliados/afiliados.module').then( m => m.AfiliadosPageModule)
   },
   {
-    path: 'productos/:id/:name',
+    path: 'productos/:id',
     loadChildren: () => import('./pages/productos/productos.module').then( m => m.ProductosPageModule)
   },
 ];
