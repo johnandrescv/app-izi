@@ -40,7 +40,7 @@
                                     <ion-icon name="add"></ion-icon>
                                 </ion-button>
                             </ion-item-group>
-                            <ion-button *ngIf="producto.info.is_plato === '1'" size="small" color="primary"><ion-icon name="restaurant"></ion-icon></ion-button>
+                            <ion-button [routerLink]="['/productos-detalle', producto.info.id_producto]" *ngIf="producto.info.is_plato === '1'" size="small" color="primary"><ion-icon name="restaurant"></ion-icon></ion-button>
                         </ion-col>
                     </ion-row>
                 </ion-col>

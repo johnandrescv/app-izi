@@ -68,4 +68,18 @@ export class RequestService {
       });
     });
   }
+
+  async getProductosDetailById(id: any) {
+    await this.controllersServ.showLoading('Cargando...');
+    return new Promise(resolve => {
+      this.http.get(`${environment.apiUrl}/productos/${id}`).subscribe((response: any) => {
+        resolve([true, response.respuesta]);
+        this.controllersServ.loading.dismiss();
+      }, (error: any) => {
+        this.controllersServ.loading.dismiss();
+        this.controllersServ.errorToast(error.error.message);
+        resolve([false]);
+      });
+    });
+  }
 }
