@@ -1,5 +1,4 @@
 .img-producto {
-    height: 120px;
     border-radius: 10px;
 }
 
@@ -15,4 +14,9 @@
 
 .no-padding {
     padding: 10px 0px 0px 0px;
+}
+
+.discount-producto {
+    color: gray;
+    text-decoration: line-through;
 }

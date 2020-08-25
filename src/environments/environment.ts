@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://35.238.112.238:8080/usuarios',
+  apiUrl: 'http://35.239.91.109:8080/usuarios',
   googleMapsStyles: [{
     featureType: 'all',
     elementType: 'labels.text.fill',

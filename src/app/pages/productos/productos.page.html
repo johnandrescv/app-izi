@@ -21,7 +21,12 @@
                     <ion-label class="title-producto">{{ producto.info.producto }}</ion-label>
                     <ion-row>
                         <ion-col class="no-padding" size="12">
-                            <ion-label class="price-producto" color="success">{{ producto.info.precio | currency:'USD' }}</ion-label>
+                            <div *ngIf="producto.info.descuento.valor === 0"><ion-label class="price-producto" color="success">{{ producto.info.precio | currency:'USD' }}</ion-label></div>
+                            <div *ngIf="producto.info.descuento.valor > 0">
+                                <ion-label class="discount-producto mr-5">{{ producto.info.precio | currency:'USD' }}</ion-label>
+                                <ion-label *ngIf="producto.info.descuento.is_porcentaje == '0'" class="price-producto" color="danger">{{ producto.info.precio - producto.info.descuento.valor | currency:'USD' }}</ion-label>
+                                <ion-label *ngIf="producto.info.descuento.is_porcentaje != '0'" class="price-producto" color="danger">{{ producto.info.precio - (producto.info.precio * (producto.info.descuento.valor / 100)) | currency:'USD' }}</ion-label>
+                            </div>
                         </ion-col>
                         <ion-col class="no-padding" size="12">
                             <ion-item-group *ngIf="producto.info.is_plato === '0'" mode="md">

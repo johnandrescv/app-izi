@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-cart-footer',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartFooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(public storageServ: StorageService) { }
 
   ngOnInit() {}
 

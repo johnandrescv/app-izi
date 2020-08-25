@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { IonSegment } from '@ionic/angular';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-productos',
@@ -19,6 +20,7 @@ export class ProductosPage implements OnInit {
   subcategoriaSeleccion = 0;
   cantidad = 1;
   constructor(private activatedRoute: ActivatedRoute,
+              private storageServ: StorageService,
               private requestServ: RequestService) { }
 
   ngOnInit() {
@@ -63,7 +65,13 @@ export class ProductosPage implements OnInit {
     }
   }
 
-  operation(tipo, index) {
-    
+  operation(action: boolean, index: number) {
+    if (action) {
+      this.productos[index].cantidad = this.productos[index].cantidad  + 1;
+    } else {
+      this.productos[index].cantidad = this.productos[index].cantidad  - 1;
+    }
+
+    this.storageServ.guardarProductos(this.productos[index], action);
   }
 }
