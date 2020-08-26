@@ -29,7 +29,7 @@ export class ProductosDetallePage implements OnInit {
     if (response[0]) {
       this.sucursalName = response[1].afiliado.nombres;
       this.afiliado = response[1].afiliado;
-      this.producto = response[1].productos;
+      this.producto = response[1].producto;
     }
   }
 }
