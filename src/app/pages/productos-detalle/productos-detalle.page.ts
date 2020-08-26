@@ -14,6 +14,7 @@ export class ProductosDetallePage implements OnInit {
   producto: any;
   sucursalName = '';
   afiliado: any;
+  extrasSeleccion = [];
   constructor(private activatedRoute: ActivatedRoute,
               private storageServ: StorageService,
               private requestServ: RequestService) { }
@@ -31,5 +32,15 @@ export class ProductosDetallePage implements OnInit {
       this.afiliado = response[1].afiliado;
       this.producto = response[1].producto;
     }
+  }
+
+  manageExtra(extra: any) {
+    const flag = this.extrasSeleccion.findIndex(data => data.id_producto_extra === extra.id_producto_extra);
+    if (flag >= 0) {
+      this.extrasSeleccion.splice(flag, 1);
+    } else {
+      this.extrasSeleccion.push(extra);
+    }
+    console.log("Extras", this.extrasSeleccion);
   }
 }

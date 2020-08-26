@@ -40,7 +40,7 @@
         </ion-radio-group>
         <div *ngIf="producto.extras.length > 0" class="pl-10 pr-10">
             <h3><strong>Extras</strong></h3>
-            <ion-button *ngFor="let extra of producto.extras" size="small" color="primary">{{ extra.nombre }}</ion-button>
+            <ion-button *ngFor="let extra of producto.extras" [fill]="(!extrasSeleccion.includes(extra)) ? 'outline' : 'solid'" size="small" color="primary" (click)="manageExtra(extra)">{{ extra.nombre }}</ion-button>
         </div>
         <div class="pl-10 pr-10">
             <h3><strong>Nota al cocinero</strong></h3>
@@ -48,6 +48,8 @@
                 placeholder="Escriba detalles adicionales para su orden..."
                 (input)="notaAdicional = $event.target.value"></ion-textarea>
         </div>
+        <div class="mt-10" size="12">
+            <ion-button expand="full" strong>Agregar al carrito</ion-button>
+        </div>
     </div>
 </ion-content>
-<app-cart-footer></app-cart-footer>
