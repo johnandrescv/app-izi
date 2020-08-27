@@ -7,8 +7,8 @@ import { Storage } from '@ionic/storage';
 export class StorageService {
 
   ubicacion: any;
+  usuario: any;
   carrito = [];
-
   constructor(private storage: Storage) { }
 
   guardarUbicacion(ubicacion: any) {

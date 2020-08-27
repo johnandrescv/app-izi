@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail-header',
@@ -8,8 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DetailHeaderComponent implements OnInit {
 
   @Input() title: string;
-  constructor() { }
+  @Input() isModal = false;
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {}
 
+  close() {
+    this.modalCtrl.dismiss();
+  }
 }

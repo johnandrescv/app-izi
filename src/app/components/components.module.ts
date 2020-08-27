@@ -6,16 +6,18 @@ import { BasicHeaderComponent } from './basic-header/basic-header.component';
 import { DetailHeaderComponent } from './detail-header/detail-header.component';
 import { CartFooterComponent } from './cart-footer/cart-footer.component';
 import { AfiliadoDetailComponent } from './afiliado-detail/afiliado-detail.component';
+import { LoginComponent } from './login/login.component';
 
 
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent],
+  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
     CartFooterComponent,
-    AfiliadoDetailComponent
+    AfiliadoDetailComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

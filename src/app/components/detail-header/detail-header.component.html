@@ -1,8 +1,13 @@
 <ion-header no-border>
   <ion-toolbar color="primary">
-      <ion-buttons slot="start">
+      <ion-buttons *ngIf="!isModal" slot="start">
           <ion-back-button defaultHref="/home" text="Atrás"></ion-back-button>
       </ion-buttons>
       <ion-title class="ion-text-capitalize">{{ title }}</ion-title>
+      <ion-buttons *ngIf="isModal" slot="end">
+        <ion-button (click)="close()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
