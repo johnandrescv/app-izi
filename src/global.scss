@@ -310,3 +310,8 @@ body{
         height: 100%;
     }
 }
+
+.separator {
+    margin: 15px 10px 15px 10px;
+    border-bottom: 1px solid rgba(var(--ion-color-medium-rgb), 0.7);
+}

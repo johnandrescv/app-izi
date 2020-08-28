@@ -13,6 +13,25 @@ export class RequestService {
               private storageServ: StorageService,
               private controllersServ: ControllersService) { }
 
+  async login(body: any) {
+    await this.controllersServ.showLoading('Validando los datos...');
+    return new Promise((resolve) => {
+      this.http.put(`${environment.apiUrl}/login`, body).subscribe((data: any) => {
+        const user = {...data.respuesta.usuario, apiKey: data.respuesta.token};
+        console.log(user);
+        this.storageServ.guardarUsuario(user);
+        this.controllersServ.loading.dismiss();
+        this.controllersServ.showToast(`Bienvenido, ${user.nombre}`, 1500, 'top', 'success');
+        resolve(true);
+      },
+      (error: any) => {
+        this.controllersServ.loading.dismiss();
+        this.controllersServ.errorToast(error.error.respuesta);
+        resolve(false);
+      });
+    });
+  }
+  
   async checkUbicacion(data: any) {
     await this.controllersServ.showLoading('Verificando ubicación...');
     return new Promise(resolve => {

@@ -9,7 +9,21 @@ export class StorageService {
   ubicacion: any;
   usuario: any;
   carrito = [];
-  constructor(private storage: Storage) { }
+  constructor(private storage: Storage) {
+    this.cargarUsuario();
+  }
+
+  guardarUsuario(data: any) {
+    this.usuario = data;
+    this.storage.set('usuario', this.usuario);
+  }
+
+  async cargarUsuario() {
+     const usuario = await this.storage.get('ubicacion');
+     if (usuario) {
+       this.usuario = usuario;
+     }
+  }
 
   guardarUbicacion(ubicacion: any) {
     this.ubicacion = ubicacion;
