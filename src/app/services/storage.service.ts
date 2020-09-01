@@ -19,7 +19,7 @@ export class StorageService {
   }
 
   async cargarUsuario() {
-     const usuario = await this.storage.get('ubicacion');
+     const usuario = await this.storage.get('usuario');
      if (usuario) {
        this.usuario = usuario;
      }
