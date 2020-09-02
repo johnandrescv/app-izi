@@ -11,6 +11,7 @@ export class StorageService {
   carrito = [];
   constructor(private storage: Storage) {
     this.cargarUsuario();
+    this.cargarCarrito();
   }
 
   guardarUsuario(data: any) {
@@ -59,6 +60,19 @@ export class StorageService {
           this.carrito[index] = producto;
         }
     }
+    this.guardarCarrito();
+  }
+
+  guardarCarrito() {
+    this.storage.set('carrito', this.carrito);
+  }
+
+  cargarCarrito() {
+    this.storage.get('carrito').then(carrito =>{ 
+      if(carrito) { 
+        this.carrito = carrito 
+      } 
+    });
   }
 
   getItemsCarrito() {

@@ -3,6 +3,7 @@ import { StorageService } from '../../services/storage.service';
 import { ControllersService } from '../../services/controllers.service';
 import { LoginComponent } from '../login/login.component';
 import { ModalController } from '@ionic/angular';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-cart-footer',
@@ -26,6 +27,12 @@ export class CartFooterComponent implements OnInit {
     if (!this.storageServ.usuario) {
       const modal = await this.modalCtrl.create({
         component: LoginComponent,
+        cssClass: 'modal-fullscreen'
+      });
+      modal.present();
+    } else {
+      const modal = await this.modalCtrl.create({
+        component: CartComponent,
         cssClass: 'modal-fullscreen'
       });
       modal.present();

@@ -1,1 +1,36 @@
 <app-detail-header title="Carrito de Compras" isModal="true"></app-detail-header>
+<ion-content color="white">
+    <ion-list lines="none">
+        <ion-item *ngFor="let carrito of items; let i = index;">
+            <ion-row class="ion-align-items-center">
+                <ion-col class="text-center" size="2">
+                    <ion-label color="primary">
+                        <h2><strong>{{ carrito.cantidad }}</strong></h2>
+                    </ion-label>
+                </ion-col>
+                <ion-col class="text-left" size="6">
+                    <ion-label class="ion-text-wrap">
+                        <h4 class="text-dark"><strong>{{ carrito.info.producto }}</strong></h4>
+                        <div class="subtitle-text" *ngIf="carrito.info.is_plato === '1'">
+                            <div *ngIf="carrito.preferencias.length > 0"><span *ngFor="let preferencia of carrito.preferencias">
+                                <strong>{{ preferencia.nombre }}: </strong> {{ preferencia.seleccion.nombre }} <span
+                                    *ngIf="preferencia.seleccion.precio > 0">(+{{ preferencia.seleccion.precio | currency:'USD' }})</span>
+                            </span></div>
+                            <ion-label class="ion-text-wrap" *ngIf="carrito.extras.length > 0">
+                                <strong>Extras: </strong> <span *ngFor="let extra of carrito.extras">{{ extra.nombre }}
+                                    (+{{ extra.precio | currency:'USD' }}) </span>
+                            </ion-label>
+                        </div>
+                        <p class="subtitle-text" *ngIf="carrito.info.is_plato === '0'">{{ carrito.info.descripcion }}</p>
+                    </ion-label>
+                </ion-col>
+                <ion-col class="text-right" size="4">
+                    <ion-label color="primary">
+                        <h3 class="text-medium"><strong>{{ carrito.total * carrito.cantidad | currency:'USD' }}</strong>
+                        </h3>
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-list>
+</ion-content>

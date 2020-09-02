@@ -62,11 +62,12 @@ export class ProductosDetallePage implements OnInit {
   }
 
   addCarrito() {
-    if (this.preferencias.length < this.producto.preferencias.length) {
+    if (this.producto.preferencias && this.preferencias.length < this.producto.preferencias.length) {
       this.controlServ.errorToast('Por favor seleccione todas sus preferencias');
       return;
     }
     this.storageServ.carrito.push({info: this.producto, extras: this.extrasSeleccion, preferencias: this.preferencias, notas: this.notaAdicional, cantidad: 1});
     this.navCtrl.pop();
+    this.storageServ.guardarCarrito();
   }
 }
