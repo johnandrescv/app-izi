@@ -9,9 +9,10 @@ import { ProductosPageRoutingModule } from './productos-routing.module';
 import { ProductosPage } from './productos.page';
 import { ComponentsModule } from '../../components/components.module';
 import { LoginComponent } from '../../components/login/login.component';
+import { CartComponent } from '../../components/cart/cart.component';
 
 @NgModule({
-  entryComponents: [LoginComponent],
+  entryComponents: [LoginComponent, CartComponent],
   imports: [
     CommonModule,
     FormsModule,

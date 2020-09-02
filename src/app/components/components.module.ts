@@ -7,17 +7,19 @@ import { DetailHeaderComponent } from './detail-header/detail-header.component';
 import { CartFooterComponent } from './cart-footer/cart-footer.component';
 import { AfiliadoDetailComponent } from './afiliado-detail/afiliado-detail.component';
 import { LoginComponent } from './login/login.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent],
+  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
     CartFooterComponent,
     AfiliadoDetailComponent,
-    LoginComponent
+    LoginComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
