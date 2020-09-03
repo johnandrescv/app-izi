@@ -35,6 +35,7 @@ export class ProductosPage implements OnInit {
       this.afiliado = response[1].afiliado;
       this.categorias = response[1].categorias;
       this.segment.value = this.categorias[0].id_afiliado_categoria;
+      this.storageServ.afiliado = this.afiliado;
     }
   }
 
