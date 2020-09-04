@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "izi-app",
+  "appName": "Izi",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -9,5 +9,8 @@
       "launchShowDuration": 0
     }
   },
-  "cordova": {}
+  "cordova": {},
+  "android": {
+    "allowMixedContent": true
+  }
 }

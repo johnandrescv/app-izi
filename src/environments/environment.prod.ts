@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://35.238.112.238:8080/usuarios',
+  apiUrl: 'https://api.izi.ec/usuarios',
   googleMapsStyles: [{
     featureType: 'all',
     elementType: 'labels.text.fill',
