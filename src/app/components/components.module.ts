@@ -8,18 +8,20 @@ import { CartFooterComponent } from './cart-footer/cart-footer.component';
 import { AfiliadoDetailComponent } from './afiliado-detail/afiliado-detail.component';
 import { LoginComponent } from './login/login.component';
 import { CartComponent } from './cart/cart.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent],
+  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
     CartFooterComponent,
     AfiliadoDetailComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

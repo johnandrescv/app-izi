@@ -1,7 +1,10 @@
 <ion-header no-border>
   <ion-toolbar color="primary">
       <ion-buttons *ngIf="!isModal" slot="start">
-          <ion-back-button defaultHref="/home" text="Atrás"></ion-back-button>
+          <ion-back-button *ngIf="!removeCart" defaultHref="/home" text="Atrás"></ion-back-button>
+          <ion-button *ngIf="removeCart" (click)="backAction()">
+            <ion-icon name="arrow-undo"></ion-icon>
+          </ion-button>
       </ion-buttons>
       <ion-title class="ion-text-capitalize">{{ title }}</ion-title>
       <ion-buttons *ngIf="isModal" slot="end">

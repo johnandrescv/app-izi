@@ -27,6 +27,13 @@ export class StorageService {
      }
   }
 
+  async cerrarSesion() {
+    await this.storage.remove('usuario');
+    this.usuario = null;
+    this.afiliado = null;
+    this.carrito = [];
+  }
+
   guardarUbicacion(ubicacion: any) {
     this.ubicacion = ubicacion;
     this.storage.set('ubicacion', ubicacion);
@@ -69,10 +76,10 @@ export class StorageService {
   }
 
   cargarCarrito() {
-    this.storage.get('carrito').then(carrito =>{ 
-      if(carrito) { 
-        this.carrito = carrito 
-      } 
+    this.storage.get('carrito').then(carrito => {
+      if (carrito) {
+        this.carrito = carrito;
+      }
     });
   }
 

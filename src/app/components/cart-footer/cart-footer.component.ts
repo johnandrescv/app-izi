@@ -19,23 +19,24 @@ export class CartFooterComponent implements OnInit {
   ngOnInit() {}
 
   async goCarrito() {
+    let modal: any;
     if (this.storageServ.getItemsCarrito() === 0) {
       this.controlServ.showToast('Usted no ha seleccionado ningún producto', 3000, 'top', 'warning');
       return;
     }
 
     if (!this.storageServ.usuario) {
-      const modal = await this.modalCtrl.create({
+      modal = await this.modalCtrl.create({
         component: LoginComponent,
         cssClass: 'modal-fullscreen'
       });
-      modal.present();
     } else {
-      const modal = await this.modalCtrl.create({
+      modal = await this.modalCtrl.create({
         component: CartComponent,
         cssClass: 'modal-fullscreen'
       });
-      modal.present();
     }
+
+    modal.present();
   }
 }

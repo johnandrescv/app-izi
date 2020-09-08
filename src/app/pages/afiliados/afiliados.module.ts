@@ -8,8 +8,10 @@ import { AfiliadosPageRoutingModule } from './afiliados-routing.module';
 
 import { AfiliadosPage } from './afiliados.page';
 import { ComponentsModule } from '../../components/components.module';
+import { MenuComponent } from '../../components/menu/menu.component';
 
 @NgModule({
+  entryComponents: [MenuComponent],
   imports: [
     CommonModule,
     FormsModule,
