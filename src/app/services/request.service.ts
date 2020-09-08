@@ -100,4 +100,19 @@ export class RequestService {
       });
     });
   }
+
+  async createOrden(data: string) {
+    await this.controllersServ.showLoading('Realizando compra...');
+    const headers = new HttpHeaders({
+      token: this.storageServ.usuario.apiKey
+    });
+    return new Promise(resolve => {
+      this.http.post(`${environment.apiUrl}/usuario/orden/create`, data, {headers}).subscribe((response: any) => {
+        resolve(true);
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.message);
+        resolve(false);
+      });
+    });
+  }
 }

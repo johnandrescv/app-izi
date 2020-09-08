@@ -96,4 +96,20 @@ export class CartComponent implements OnInit {
   close() {
     this.modalCtrl.dismiss();
   }
+
+  async checkout() {
+    const previousBody = {
+      cliente: {
+        direccion:{
+          id_usuario_direccion: 0,
+          direccion: this.storageServ.ubicacion.direccion,
+          latitud: this.storageServ.ubicacion.latitud.toString(),
+          longitud: this.storageServ.ubicacion.longitud.toString(),
+        },
+      },
+      productos: [...this.body]
+    };
+    console.log(previousBody);
+    const body = JSON.stringify(previousBody);
+  }
 }
