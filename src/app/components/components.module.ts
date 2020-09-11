@@ -9,11 +9,12 @@ import { AfiliadoDetailComponent } from './afiliado-detail/afiliado-detail.compo
 import { LoginComponent } from './login/login.component';
 import { CartComponent } from './cart/cart.component';
 import { MenuComponent } from './menu/menu.component';
+import { DatosFacturacionComponent } from './datos-facturacion/datos-facturacion.component';
 
 
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent],
+  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
@@ -21,7 +22,8 @@ import { MenuComponent } from './menu/menu.component';
     AfiliadoDetailComponent,
     LoginComponent,
     CartComponent,
-    MenuComponent
+    MenuComponent,
+    DatosFacturacionComponent
   ],
   imports: [
     CommonModule,

@@ -9,9 +9,10 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { ComponentsModule } from '../../components/components.module';
 import { MenuComponent } from '../../components/menu/menu.component';
+import { DatosFacturacionComponent } from '../../components/datos-facturacion/datos-facturacion.component';
 
 @NgModule({
-  entryComponents: [MenuComponent],
+  entryComponents: [MenuComponent, DatosFacturacionComponent],
   imports: [
     CommonModule,
     FormsModule,

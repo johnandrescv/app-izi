@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { ModalController } from '@ionic/angular';
+import { DatosFacturacionComponent } from '../datos-facturacion/datos-facturacion.component';
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +13,16 @@ export class MenuComponent implements OnInit {
   constructor(public storageServ: StorageService,
               private modalCtrl: ModalController) { }
 
-  ngOnInit() {
-    console.log(this.storageServ.usuario);
+  ngOnInit() {}
+
+  async datosFacturacion() {
+    const modal = await this.modalCtrl.create({
+      component: DatosFacturacionComponent,
+      componentProps: {
+        color: 'primary',
+      }
+    });
+    modal.present();
   }
 
   cerrarSesion() {

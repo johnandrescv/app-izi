@@ -115,4 +115,19 @@ export class RequestService {
       });
     });
   }
+
+  async createFacturacion(data: string) {
+    await this.controllersServ.showLoading('Creando datos de facturación...');
+    const headers = new HttpHeaders({
+      token: this.storageServ.usuario.apiKey
+    });
+    return new Promise(resolve => {
+      this.http.post(`${environment.apiUrl}/usuario/facturacion`, data, {headers}).subscribe((response: any) => {
+        resolve(true);
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.message);
+        resolve(false);
+      });
+    });
+  }
 }
