@@ -10,11 +10,13 @@ import { LoginComponent } from './login/login.component';
 import { CartComponent } from './cart/cart.component';
 import { MenuComponent } from './menu/menu.component';
 import { DatosFacturacionComponent } from './datos-facturacion/datos-facturacion.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
+import { NoDataComponent } from './no-data/no-data.component';
 
-
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent],
+  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent, PedidosComponent, NoDataComponent],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
@@ -23,9 +25,12 @@ import { DatosFacturacionComponent } from './datos-facturacion/datos-facturacion
     LoginComponent,
     CartComponent,
     MenuComponent,
-    DatosFacturacionComponent
+    PedidosComponent,
+    DatosFacturacionComponent, 
+    NoDataComponent
   ],
   imports: [
+    MomentModule,
     CommonModule,
     FormsModule,
     IonicModule

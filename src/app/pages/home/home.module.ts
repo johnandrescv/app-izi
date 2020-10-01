@@ -10,9 +10,10 @@ import { HomePage } from './home.page';
 import { ComponentsModule } from '../../components/components.module';
 import { MenuComponent } from '../../components/menu/menu.component';
 import { DatosFacturacionComponent } from '../../components/datos-facturacion/datos-facturacion.component';
+import { PedidosComponent } from 'src/app/components/pedidos/pedidos.component';
 
 @NgModule({
-  entryComponents: [MenuComponent, DatosFacturacionComponent],
+  entryComponents: [MenuComponent, DatosFacturacionComponent, PedidosComponent],
   imports: [
     CommonModule,
     FormsModule,

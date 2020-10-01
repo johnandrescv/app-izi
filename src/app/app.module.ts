@@ -14,10 +14,14 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
+import { MomentModule } from 'ngx-moment';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    MomentModule,
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),

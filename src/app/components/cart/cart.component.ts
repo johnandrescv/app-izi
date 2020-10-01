@@ -57,7 +57,7 @@ export class CartComponent implements OnInit {
 
   normalizePlato(item: any) {
     const extras = item.extras.map((extra: any) => extra.id_producto_extra);
-    const preferencias = item.preferencias.map((preferencia: any) => preferencia.id_producto_preferencia);
+    const preferencias = item.preferencias.map((preferencia: any) => preferencia.seleccion.id_preferencia_detalle);
     const plato = {
       id_producto: item.info.id_afiliado_producto,
       extras,
@@ -109,13 +109,13 @@ export class CartComponent implements OnInit {
           longitud: this.storageServ.ubicacion.longitud.toString(),
         },
       },
+      tipo: this.storageServ.afiliado.tipo,
       sucursal: { id_afiliado_sucursal: this.storageServ.afiliado.id_afiliado_sucursal },
       productos: [...this.body]
     };
-    console.log(previousBody);
-    console.log(this.storageServ.afiliado);
     const body = JSON.stringify(previousBody);
     const response = this.requestServ.createOrden(body);
+    console.log("BODY", body);
     if (response) {
       this.modalCtrl.dismiss();
     }

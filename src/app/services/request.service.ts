@@ -9,6 +9,7 @@ import { ControllersService } from './controllers.service';
 })
 export class RequestService {
 
+  ordenes = [];
   constructor(private http: HttpClient,
               private storageServ: StorageService,
               private controllersServ: ControllersService) { }
@@ -109,8 +110,10 @@ export class RequestService {
     return new Promise(resolve => {
       this.http.post(`${environment.apiUrl}/orden/create`, data, {headers}).subscribe((response: any) => {
         resolve(true);
+        this.controllersServ.loading.dismiss();
       }, (error: any) => {
-        this.controllersServ.errorToast(error.error.message);
+        this.controllersServ.errorToast(error.error.respuesta);
+        this.controllersServ.loading.dismiss();
         resolve(false);
       });
     });
@@ -124,9 +127,25 @@ export class RequestService {
     return new Promise(resolve => {
       this.http.post(`${environment.apiUrl}/facturacion`, data, {headers}).subscribe((response: any) => {
         resolve(true);
+        this.controllersServ.loading.dismiss();
       }, (error: any) => {
-        this.controllersServ.errorToast(error.error.message);
+        this.controllersServ.errorToast(error.error.respuesta);
+        this.controllersServ.loading.dismiss();
         resolve(false);
+      });
+    });
+  }
+
+  async getOrdenesActivas() {
+    const headers = new HttpHeaders({
+      token: this.storageServ.usuario.apiKey
+    });
+    return new Promise(resolve => {
+      this.http.get(`${environment.apiUrl}/ordenes/activas`, {headers}).subscribe((response: any) => {
+        resolve([true, response.respuesta]);
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        resolve([false]);
       });
     });
   }
