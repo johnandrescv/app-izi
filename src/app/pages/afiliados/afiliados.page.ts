@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestService } from '../../services/request.service';
 import { NavController } from '@ionic/angular';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-afiliados',
@@ -14,7 +15,8 @@ export class AfiliadosPage implements OnInit {
   afiliados = [];
   constructor(private activatedRoute: ActivatedRoute,
               public navCtrl: NavController,
-              private requestServ: RequestService) { }
+              private requestServ: RequestService,
+              private storageServ: StorageService) { }
 
   ngOnInit() {
     this.idCategoria = this.activatedRoute.snapshot.paramMap.get('id');
@@ -30,5 +32,10 @@ export class AfiliadosPage implements OnInit {
 
   buscar(e: any) {
 
+  }
+
+  goProductos(afiliado: any) {
+    this.storageServ.afiliado = afiliado;
+    this.navCtrl.navigateForward(['/productos', afiliado.id_afiliado_sucursal]);
   }
 }

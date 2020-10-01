@@ -107,7 +107,7 @@ export class RequestService {
       token: this.storageServ.usuario.apiKey
     });
     return new Promise(resolve => {
-      this.http.post(`${environment.apiUrl}/usuario/orden/create`, data, {headers}).subscribe((response: any) => {
+      this.http.post(`${environment.apiUrl}/orden/create`, data, {headers}).subscribe((response: any) => {
         resolve(true);
       }, (error: any) => {
         this.controllersServ.errorToast(error.error.message);
@@ -122,7 +122,7 @@ export class RequestService {
       token: this.storageServ.usuario.apiKey
     });
     return new Promise(resolve => {
-      this.http.post(`${environment.apiUrl}/usuario/facturacion`, data, {headers}).subscribe((response: any) => {
+      this.http.post(`${environment.apiUrl}/facturacion`, data, {headers}).subscribe((response: any) => {
         resolve(true);
       }, (error: any) => {
         this.controllersServ.errorToast(error.error.message);

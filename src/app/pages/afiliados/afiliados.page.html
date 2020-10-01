@@ -11,7 +11,7 @@
   </ion-row>
 </ion-toolbar> 
   <ion-list lines="full">
-    <ion-item *ngFor="let afiliado of afiliados" detail="true" [routerLink]="['/productos', afiliado.id_afiliado_sucursal]">
+    <ion-item *ngFor="let afiliado of afiliados" detail="true" (click)="goProductos(afiliado)">
       <ion-img [src]="afiliado.imagen_presentacion" slot="start"></ion-img>
       <ion-label>
         <h2>{{ afiliado.nombre_afiliado }}</h2>

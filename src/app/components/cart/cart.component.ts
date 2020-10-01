@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { AlertController, ModalController } from '@ionic/angular';
+import { RequestService } from '../../services/request.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,8 @@ export class CartComponent implements OnInit {
   total = 0;
   constructor(public storageServ: StorageService,
               private alertCtrl: AlertController,
-              private modalCtrl: ModalController) { }
+              private modalCtrl: ModalController,
+              private requestServ: RequestService) { }
 
   ngOnInit() {
     this.checkCarrito();
@@ -100,16 +102,22 @@ export class CartComponent implements OnInit {
   async checkout() {
     const previousBody = {
       cliente: {
-        direccion:{
+        direccion: {
           id_usuario_direccion: 0,
           direccion: this.storageServ.ubicacion.direccion,
           latitud: this.storageServ.ubicacion.latitud.toString(),
           longitud: this.storageServ.ubicacion.longitud.toString(),
         },
       },
+      sucursal: { id_afiliado_sucursal: this.storageServ.afiliado.id_afiliado_sucursal },
       productos: [...this.body]
     };
     console.log(previousBody);
+    console.log(this.storageServ.afiliado);
     const body = JSON.stringify(previousBody);
+    const response = this.requestServ.createOrden(body);
+    if (response) {
+      this.modalCtrl.dismiss();
+    }
   }
 }
