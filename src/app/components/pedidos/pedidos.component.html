@@ -5,7 +5,7 @@
   </ion-refresher>
   <app-no-data *ngIf="ordenes.length === 0 && !loading" title="Usted no registra pedidos realizados"></app-no-data>
   <ion-list *ngIf="ordenes.length > 0" lines="full" type="ios">
-      <ion-item *ngFor="let orden of ordenes" detail="true">
+      <ion-item *ngFor="let orden of ordenes" detail="true" (click)="goOrden(orden.id_orden)">
           <ion-avatar slot="start">
               <img src="./assets/images/header-logo.png">
           </ion-avatar>

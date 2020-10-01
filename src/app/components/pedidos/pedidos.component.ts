@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../../services/request.service';
 import { ControllersService } from '../../services/controllers.service';
+import { ModalController } from '@ionic/angular';
+import { PedidoDetalleComponent } from '../pedido-detalle/pedido-detalle.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -12,6 +14,7 @@ export class PedidosComponent implements OnInit {
   ordenes = [];
   loading = false;
   constructor(private requestServ: RequestService,
+              private modalCtrl: ModalController,
               private controllserServ: ControllersService) { }
 
   ngOnInit() {
@@ -27,6 +30,18 @@ export class PedidosComponent implements OnInit {
       this.controllserServ.loading.dismiss();
       this.loading = false;
     }
+  }
+
+  async goOrden(id: number) {
+    const modal = await this.modalCtrl.create({
+      component: PedidoDetalleComponent,
+      cssClass: 'modal-fullscreen',
+      componentProps: {
+        idOrden: id,
+      }
+    });
+
+    modal.present();
   }
 
   doRefresh(event) {

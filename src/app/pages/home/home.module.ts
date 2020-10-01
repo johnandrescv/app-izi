@@ -11,9 +11,10 @@ import { ComponentsModule } from '../../components/components.module';
 import { MenuComponent } from '../../components/menu/menu.component';
 import { DatosFacturacionComponent } from '../../components/datos-facturacion/datos-facturacion.component';
 import { PedidosComponent } from 'src/app/components/pedidos/pedidos.component';
+import { PedidoDetalleComponent } from '../../components/pedido-detalle/pedido-detalle.component';
 
 @NgModule({
-  entryComponents: [MenuComponent, DatosFacturacionComponent, PedidosComponent],
+  entryComponents: [MenuComponent, DatosFacturacionComponent, PedidosComponent, PedidoDetalleComponent],
   imports: [
     CommonModule,
     FormsModule,
