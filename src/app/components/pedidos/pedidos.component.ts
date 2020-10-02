@@ -12,6 +12,17 @@ import { PedidoDetalleComponent } from '../pedido-detalle/pedido-detalle.compone
 export class PedidosComponent implements OnInit {
 
   ordenes = [];
+  estados = {
+    FCS: {texto: 'Confirmando Orden', color: 'warning'},
+    OPBR: {texto:'Buscando repartidor', color: 'warning'},
+    OPRC: {texto:'Repartidor en camino', color: 'primary'},
+    OPRL: {texto:'Repartidor Listo', color: 'primary'},
+    OLBR: {texto:'Buscando repartidor', color: 'primary'},
+    OLRC: {texto:'Repartidor en camino', color: 'primary'},
+    C: {texto:'Orden cancelada', color: 'danger'},
+    E: {texto:'Orden eliminadada', color: 'danger'},
+    T: {texto:'Orden Terminada', color: 'success'},
+  }
   loading = false;
   constructor(private requestServ: RequestService,
               private modalCtrl: ModalController,
