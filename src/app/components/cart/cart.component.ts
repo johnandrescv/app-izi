@@ -115,9 +115,12 @@ export class CartComponent implements OnInit {
     };
     const body = JSON.stringify(previousBody);
     const response = this.requestServ.createOrden(body);
-    console.log("BODY", body);
     if (response) {
-      this.modalCtrl.dismiss();
+      this.storageServ.carrito = [];
+      this.storageServ.guardarCarrito();
+      this.modalCtrl.dismiss({
+        orderOk: true
+      });
     }
   }
 }

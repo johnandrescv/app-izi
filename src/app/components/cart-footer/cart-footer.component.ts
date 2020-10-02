@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { ControllersService } from '../../services/controllers.service';
 import { LoginComponent } from '../login/login.component';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { CartComponent } from '../cart/cart.component';
 
 @Component({
@@ -14,6 +14,7 @@ export class CartFooterComponent implements OnInit {
 
   constructor(public storageServ: StorageService,
               private modalCtrl: ModalController,
+              private navCtrl: NavController,
               private controlServ: ControllersService) { }
 
   ngOnInit() {}
@@ -36,7 +37,10 @@ export class CartFooterComponent implements OnInit {
         cssClass: 'modal-fullscreen'
       });
     }
-
     modal.present();
+    const { data } = await modal.onWillDismiss();
+    if (data && data.orderOk) {
+      this.navCtrl.navigateRoot(['/home']);
+    }
   }
 }

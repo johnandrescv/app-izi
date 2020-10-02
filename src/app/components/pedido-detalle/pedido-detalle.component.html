@@ -1,4 +1,21 @@
 <app-detail-header title="Orden #{{idOrden}}" isModal="true"></app-detail-header>
-<p>
-  pedido-detalle works!
-</p>
+<ion-content>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <ion-button color="primary" [fill]="(submenu === 1) ? 'outline' : 'solid'" (click)="changeSubmenu(1)" expand="block">Resumen</ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button color="primary" [fill]="(submenu === 2) ? 'outline' : 'solid'" (click)="changeSubmenu(2)" expand="block">Ubicación</ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button color="primary" [fill]="(submenu === 3) ? 'outline' : 'solid'" (click)="changeSubmenu(3)" expand="block">Estado</ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button color="primary" [fill]="(submenu === 4) ? 'outline' : 'solid'" (click)="changeSubmenu(4)" expand="block">Repartidor</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

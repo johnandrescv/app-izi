@@ -9,10 +9,13 @@ import { RequestService } from '../../services/request.service';
 export class PedidoDetalleComponent implements OnInit {
 
   @Input() idOrden: number;
+  submenu = 1;
   constructor(private requestServ: RequestService) { }
 
   ngOnInit() {
-    console.log("IDORDEN",this.idOrden);
   }
 
+  changeSubmenu(option: number) {
+    this.submenu = option;
+  }
 }
