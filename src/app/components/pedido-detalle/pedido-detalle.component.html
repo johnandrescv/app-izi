@@ -1,5 +1,6 @@
 <app-detail-header title="Orden #{{idOrden}}" isModal="true"></app-detail-header>
 <ion-content>
+  <app-pedido-resumen *ngIf="orden && submenu === 1" [orden]="orden"></app-pedido-resumen>
 </ion-content>
 <ion-footer>
   <ion-grid>

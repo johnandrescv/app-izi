@@ -15,9 +15,10 @@ import { NoDataComponent } from './no-data/no-data.component';
 
 import { MomentModule } from 'ngx-moment';
 import { PedidoDetalleComponent } from './pedido-detalle/pedido-detalle.component';
+import { PedidoResumenComponent } from './pedido-resumen/pedido-resumen.component';
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent, PedidosComponent, NoDataComponent, PedidoDetalleComponent],
+  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent, PedidosComponent, NoDataComponent, PedidoDetalleComponent, PedidoResumenComponent],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
@@ -29,7 +30,8 @@ import { PedidoDetalleComponent } from './pedido-detalle/pedido-detalle.componen
     PedidosComponent,
     DatosFacturacionComponent, 
     NoDataComponent,
-    PedidoDetalleComponent
+    PedidoDetalleComponent,
+    PedidoResumenComponent
   ],
   imports: [
     MomentModule,

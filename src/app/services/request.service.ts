@@ -149,4 +149,21 @@ export class RequestService {
       });
     });
   }
+
+  async getOrdenByID(id: number) {
+    await this.controllersServ.showLoading('Cargando orden...');
+    const headers = new HttpHeaders({
+      token: this.storageServ.usuario.apiKey
+    });
+    return new Promise(resolve => {
+      this.http.get(`${environment.apiUrl}/ordenes/${id}`, {headers}).subscribe((response: any) => {
+        this.controllersServ.loading.dismiss();
+        resolve([true, response.respuesta]);
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        this.controllersServ.loading.dismiss();
+        resolve([false]);
+      });
+    });
+  }
 }
