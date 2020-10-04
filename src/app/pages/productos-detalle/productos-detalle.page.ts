@@ -66,7 +66,7 @@ export class ProductosDetallePage implements OnInit {
       this.controlServ.errorToast('Por favor seleccione todas sus preferencias');
       return;
     }
-    this.storageServ.carrito.push({info: this.producto, extras: this.extrasSeleccion, preferencias: this.preferencias, notas: this.notaAdicional, cantidad: 1});
+    this.storageServ.carrito.push({id: this.productoId, info: this.producto, extras: this.extrasSeleccion, preferencias: this.preferencias, notas: this.notaAdicional, cantidad: 1});
     this.navCtrl.pop();
     this.storageServ.guardarCarrito();
   }

@@ -12,6 +12,8 @@ export class DetailHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() isModal = false;
   @Input() removeCart = false;
+  @Input() chatHeader = false;
+  @Input() repartidor: any;
   constructor(private modalCtrl: ModalController,
               private navCtrl: NavController,
               private storageServ: StorageService,

@@ -38,7 +38,7 @@ export class CartComponent implements OnInit {
           total = total + preferencia.seleccion.precio;
         }
       } else {
-        this.body.push({id_producto: item.info.id_producto, cantidad: item.cantidad});
+        this.body.push({id_producto: Number(item.info.id_producto), cantidad: item.cantidad});
       }
 
       let subtotal = item.info.precio;
@@ -59,7 +59,7 @@ export class CartComponent implements OnInit {
     const extras = item.extras.map((extra: any) => extra.id_producto_extra);
     const preferencias = item.preferencias.map((preferencia: any) => preferencia.seleccion.id_preferencia_detalle);
     const plato = {
-      id_producto: item.info.id_afiliado_producto,
+      id_producto: Number(item.id),
       extras,
       preferencias,
       cantidad: item.cantidad,
@@ -114,7 +114,7 @@ export class CartComponent implements OnInit {
       productos: [...this.body]
     };
     const body = JSON.stringify(previousBody);
-    const response = this.requestServ.createOrden(body);
+    const response = await this.requestServ.createOrden(body);
     if (response) {
       this.storageServ.carrito = [];
       this.storageServ.guardarCarrito();

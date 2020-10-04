@@ -16,9 +16,12 @@ import { NoDataComponent } from './no-data/no-data.component';
 import { MomentModule } from 'ngx-moment';
 import { PedidoDetalleComponent } from './pedido-detalle/pedido-detalle.component';
 import { PedidoResumenComponent } from './pedido-resumen/pedido-resumen.component';
+import { AutosizeModule } from 'ngx-autosize';
+import { ChatComponent } from './chat/chat.component';
+import { PedidoUbicacionComponent } from './pedido-ubicacion/pedido-ubicacion.component';
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent, PedidosComponent, NoDataComponent, PedidoDetalleComponent, PedidoResumenComponent],
+  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent, PedidosComponent, NoDataComponent, PedidoDetalleComponent, PedidoResumenComponent, ChatComponent, PedidoUbicacionComponent],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
@@ -28,13 +31,16 @@ import { PedidoResumenComponent } from './pedido-resumen/pedido-resumen.componen
     CartComponent,
     MenuComponent,
     PedidosComponent,
-    DatosFacturacionComponent, 
+    DatosFacturacionComponent,
     NoDataComponent,
     PedidoDetalleComponent,
-    PedidoResumenComponent
+    PedidoResumenComponent,
+    ChatComponent,
+    PedidoUbicacionComponent
   ],
   imports: [
     MomentModule,
+    AutosizeModule,
     CommonModule,
     FormsModule,
     IonicModule

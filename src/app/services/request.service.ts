@@ -166,4 +166,41 @@ export class RequestService {
       });
     });
   }
+
+  async getMensajesOrden(id: number, loading = false) {
+    if (loading) {
+      await this.controllersServ.showLoading('Cargando...');
+    }
+    const headers = new HttpHeaders({
+      token: this.storageServ.usuario.apiKey
+    });
+    return new Promise(resolve => {
+      this.http.get(`${environment.apiUrl}/ordenes/${id}/mensajes`, {headers}).subscribe((response: any) => {
+        if (loading) {
+          this.controllersServ.loading.dismiss();
+        }
+        resolve([true, response.respuesta]);
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        if (loading) {
+          this.controllersServ.loading.dismiss();
+        }
+        resolve([false]);
+      });
+    });
+  }
+
+  async sendMensajeOrden(id: number, body: string) {
+    const headers = new HttpHeaders({
+      token: this.storageServ.usuario.apiKey
+    });
+    return new Promise(resolve => {
+      this.http.post(`${environment.apiUrl}/ordenes/${id}/mensajes`, body, {headers}).subscribe((response: any) => {
+        resolve(true);
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        resolve(false);
+      });
+    });
+  }
 }

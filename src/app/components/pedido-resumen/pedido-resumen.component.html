@@ -18,7 +18,7 @@
               <ion-label class="ion-text-wrap">
                   <h4 class="text-dark"><strong>{{ carrito.nombre }}</strong></h4>
                   <div class="subtitle-text" *ngIf="carrito.is_plato === '1'">
-                      <div *ngIf="carrito.preferencias.length > 0"><span *ngFor="let preferencia of carrito.preferencias_orden">
+                      <div *ngIf="carrito.preferencias_orden.length > 0"><span *ngFor="let preferencia of carrito.preferencias_orden">
                           <strong>{{ preferencia.titulo }}: </strong> {{ preferencia.nombre }} <span
                               *ngIf="preferencia.precio > 0">(+{{ preferencia.precio | currency:'USD' }})</span>
                       </span></div>

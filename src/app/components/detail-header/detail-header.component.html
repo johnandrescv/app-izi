@@ -13,4 +13,13 @@
         </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-list lines="none" *ngIf="chatHeader && repartidor">
+    <ion-item class="mt-5 mb-5">
+        <ion-avatar class="mr-20"><img [src]="repartidor.imagen"></ion-avatar>
+        <ion-label>
+          <h2><strong>{{ repartidor.nombre }} {{ repartidor.apellido }}</strong></h2>
+          <p class="subtitle-text">Repartidor</p>
+        </ion-label>
+      </ion-item>
+  </ion-list>
 </ion-header>

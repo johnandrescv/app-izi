@@ -10,9 +10,12 @@ import { AfiliadosPage } from './afiliados.page';
 import { ComponentsModule } from '../../components/components.module';
 import { MenuComponent } from '../../components/menu/menu.component';
 import { DatosFacturacionComponent } from '../../components/datos-facturacion/datos-facturacion.component';
+import { PedidosComponent } from '../../components/pedidos/pedidos.component';
+import { PedidoDetalleComponent } from '../../components/pedido-detalle/pedido-detalle.component';
+import { ChatComponent } from '../../components/chat/chat.component';
 
 @NgModule({
-  entryComponents: [MenuComponent, DatosFacturacionComponent],
+  entryComponents: [MenuComponent, DatosFacturacionComponent, PedidosComponent, PedidoDetalleComponent, ChatComponent],
   imports: [
     CommonModule,
     FormsModule,

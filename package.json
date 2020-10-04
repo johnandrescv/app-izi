@@ -38,6 +38,7 @@
     "cordova-sqlite-storage": "^5.0.1",
     "jetifier": "^1.6.6",
     "moment": "^2.29.0",
+    "ngx-autosize": "^1.8.0",
     "ngx-moment": "^5.0.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
