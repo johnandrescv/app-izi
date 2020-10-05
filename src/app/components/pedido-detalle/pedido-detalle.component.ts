@@ -11,6 +11,17 @@ export class PedidoDetalleComponent implements OnInit {
   @Input() idOrden: number;
   submenu = 1;
   orden: any;
+  estados = {
+    FCS: {texto: 'Confirmando Orden', color: 'warning', active: false, refresh: true},
+    OPBR: {texto: 'Buscando repartidor', color: 'warning', active: false, refresh: true},
+    OPRC: {texto: 'Repartidor en camino', color: 'primary', active: true, refresh: true},
+    OPRL: {texto: 'Repartidor Listo', color: 'primary', active: true, refresh: true},
+    OLBR: {texto: 'Buscando repartidor', color: 'primary', active: false, refresh: true},
+    OLRC: {texto: 'Repartidor en camino', color: 'primary', active: true, refresh: true},
+    C: {texto: 'Orden cancelada', color: 'danger', active: false, refresh: false},
+    E: {texto: 'Orden eliminadada', color: 'danger', active: false, refresh: false},
+    T: {texto: 'Orden Terminada', color: 'success', active: false, refresh: false},
+  }
   constructor(private requestServ: RequestService) { }
 
   ngOnInit() {
@@ -26,5 +37,10 @@ export class PedidoDetalleComponent implements OnInit {
 
   changeSubmenu(option: number) {
     this.submenu = option;
+  }
+
+  doRefresh(event: any) {
+    this.getOrdenById();
+    event.target.complete();
   }
 }

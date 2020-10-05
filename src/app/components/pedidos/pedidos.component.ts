@@ -13,15 +13,15 @@ export class PedidosComponent implements OnInit {
 
   ordenes = [];
   estados = {
-    FCS: {texto: 'Confirmando Orden', color: 'warning'},
-    OPBR: {texto: 'Buscando repartidor', color: 'warning'},
-    OPRC: {texto: 'Repartidor en camino', color: 'primary'},
-    OPRL: {texto: 'Repartidor Listo', color: 'primary'},
-    OLBR: {texto: 'Buscando repartidor', color: 'primary'},
-    OLRC: {texto: 'Repartidor en camino', color: 'primary'},
-    C: {texto: 'Orden cancelada', color: 'danger'},
-    E: {texto: 'Orden eliminadada', color: 'danger'},
-    T: {texto: 'Orden Terminada', color: 'success'},
+    FCS: {texto: 'Confirmando Orden', color: 'warning', active: false},
+    OPBR: {texto: 'Buscando repartidor', color: 'warning', active: false},
+    OPRC: {texto: 'Repartidor en camino', color: 'primary', active: true},
+    OPRL: {texto: 'Repartidor Listo', color: 'primary', active: true},
+    OLBR: {texto: 'Buscando repartidor', color: 'primary', active: false},
+    OLRC: {texto: 'Repartidor en camino', color: 'primary', active: true},
+    C: {texto: 'Orden cancelada', color: 'danger', active: false},
+    E: {texto: 'Orden eliminadada', color: 'danger', active: false},
+    T: {texto: 'Orden Terminada', color: 'success', active: false},
   }
   loading = false;
   constructor(private requestServ: RequestService,
