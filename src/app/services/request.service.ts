@@ -167,6 +167,29 @@ export class RequestService {
     });
   }
 
+  async getUbicacionOrden(id: number, loading = false) {
+    if (loading) {
+      await this.controllersServ.showLoading('Cargando...');
+    }
+    const headers = new HttpHeaders({
+      token: this.storageServ.usuario.apiKey
+    });
+    return new Promise(resolve => {
+      this.http.get(`${environment.apiUrl}/ordenes/${id}/ubicacion`, {headers}).subscribe((response: any) => {
+        if (loading) {
+          this.controllersServ.loading.dismiss();
+        }
+        resolve([true, response.respuesta]);
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        if (loading) {
+          this.controllersServ.loading.dismiss();
+        }
+        resolve([false]);
+      });
+    });
+  }
+
   async getMensajesOrden(id: number, loading = false) {
     if (loading) {
       await this.controllersServ.showLoading('Cargando...');

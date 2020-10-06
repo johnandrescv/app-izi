@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { LoginComponent } from '../login/login.component';
 import { MenuComponent } from '../menu/menu.component';
+import { RequestService } from '../../services/request.service';
 
 @Component({
   selector: 'app-basic-header',
@@ -13,10 +14,13 @@ import { MenuComponent } from '../menu/menu.component';
 export class BasicHeaderComponent implements OnInit {
 
   constructor(public storageServ: StorageService,
+              private requestServ: RequestService,
               private modalCtrl: ModalController,
               private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getOrdenesActivas();
+  }
 
   goUbicacion() {
     this.router.navigateByUrl('/ubicacion');
@@ -35,7 +39,16 @@ export class BasicHeaderComponent implements OnInit {
         cssClass: 'modal-fullscreen'
       });
     }
-
     modal.present();
+    await modal.onWillDismiss();
+    this.getOrdenesActivas();
   }
+
+  async getOrdenesActivas() {
+    const response = await this.requestServ.getOrdenesActivas();
+    if (response[0]) {
+      this.storageServ.ordenes = response[1].cantidad;
+    }
+  }
+  
 }

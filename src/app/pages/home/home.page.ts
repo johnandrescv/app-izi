@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../../services/request.service';
 import { ModalController } from '@ionic/angular';
 import { PedidosComponent } from 'src/app/components/pedidos/pedidos.component';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +12,16 @@ import { PedidosComponent } from 'src/app/components/pedidos/pedidos.component';
 export class HomePage implements OnInit {
 
   categorias = [];
-  ordenes = 0;
   constructor(private requestServ: RequestService,
+              public storageServ: StorageService,
               private modalCtrl: ModalController) { }
+  
+  ngOnInit() {
+    this.getCategorias();
+  }
 
   ionViewWillEnter() {
     this.getOrdenesActivas();
-  }
-
-  ngOnInit() {
-    this.getCategorias();
   }
 
   async getCategorias() {
@@ -28,13 +29,6 @@ export class HomePage implements OnInit {
     if (response[0]) {
       this.categorias = response[1];
       this.getOrdenesActivas();
-    }
-  }
-
-  async getOrdenesActivas() {
-    const response = await this.requestServ.getOrdenesActivas();
-    if (response[0]) {
-      this.ordenes = response[1].cantidad;
     }
   }
 
@@ -49,5 +43,12 @@ export class HomePage implements OnInit {
 
   buscar(e: any) {
 
+  }
+
+  async getOrdenesActivas() {
+    const response = await this.requestServ.getOrdenesActivas();
+    if (response[0]) {
+      this.storageServ.ordenes = response[1].cantidad;
+    }
   }
 }

@@ -4,9 +4,9 @@
     <ion-searchbar mode="md" color="search" placeholder="Buscar..." animated debounce="300" (ionChange)="buscar($event)"></ion-searchbar>
   </ion-toolbar> 
   <ion-row class="ion-justify-content-center">
-    <ion-col *ngIf="ordenes > 0" size="12">
+    <ion-col *ngIf="storageServ.usuario && storageServ.ordenes > 0" size="12">
       <ion-button color="success" expand="block" shape="round" (click)="goOrdenesActiva()">
-            <ion-icon name="cart" slot="start"></ion-icon><ion-label> Usted posee {{ ordenes }} activas</ion-label>
+            <ion-icon name="cart" slot="start"></ion-icon><ion-label> Usted posee {{ storageServ.ordenes }} ordenes activas</ion-label>
       </ion-button>
     </ion-col>
     <ion-col *ngFor="let categoria of categorias" size="12" [routerLink]="['/afiliados', categoria.id_categoria]">

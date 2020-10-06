@@ -10,6 +10,7 @@ export class StorageService {
   usuario: any;
   afiliado: any;
   carrito = [];
+  ordenes = 0;
   constructor(private storage: Storage) {
     this.cargarUsuario();
     this.cargarCarrito();
