@@ -136,12 +136,12 @@ export class RequestService {
     });
   }
 
-  async getOrdenesActivas() {
+  async getOrdenes(url: string) {
     const headers = new HttpHeaders({
       token: this.storageServ.usuario.apiKey
     });
     return new Promise(resolve => {
-      this.http.get(`${environment.apiUrl}/ordenes/activas`, {headers}).subscribe((response: any) => {
+      this.http.get(`${environment.apiUrl}/${url}`, {headers}).subscribe((response: any) => {
         resolve([true, response.respuesta]);
       }, (error: any) => {
         this.controllersServ.errorToast(error.error.respuesta);

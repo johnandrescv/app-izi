@@ -35,7 +35,10 @@ export class HomePage implements OnInit {
   async goOrdenesActiva() {
     const modal = await this.modalCtrl.create({
       component: PedidosComponent,
-      cssClass: 'modal-fullscreen'
+      cssClass: 'modal-fullscreen',
+      componentProps: {
+        url: 'ordenes/activas'
+      }
     });
 
     modal.present();
@@ -46,7 +49,7 @@ export class HomePage implements OnInit {
   }
 
   async getOrdenesActivas() {
-    const response = await this.requestServ.getOrdenesActivas();
+    const response = await this.requestServ.getOrdenes('ordenes/activas');
     if (response[0]) {
       this.storageServ.ordenes = response[1].cantidad;
     }

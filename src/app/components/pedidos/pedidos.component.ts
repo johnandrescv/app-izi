@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RequestService } from '../../services/request.service';
 import { ControllersService } from '../../services/controllers.service';
 import { ModalController } from '@ionic/angular';
@@ -11,6 +11,7 @@ import { PedidoDetalleComponent } from '../pedido-detalle/pedido-detalle.compone
 })
 export class PedidosComponent implements OnInit {
 
+  @Input() url = 'ordenes'
   ordenes = [];
   estados = {
     FCS: {texto: 'Confirmando Orden', color: 'warning', active: false},
@@ -35,7 +36,7 @@ export class PedidosComponent implements OnInit {
   async getOrdenesActivas() {
     this.loading = true;
     await this.controllserServ.showLoading('Cargando...');
-    const response = await this.requestServ.getOrdenesActivas();
+    const response = await this.requestServ.getOrdenes(this.url);
     if (response[0]) {
       this.ordenes = response[1].ordenes;
       this.controllserServ.loading.dismiss();

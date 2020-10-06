@@ -13,6 +13,7 @@ export class AfiliadosPage implements OnInit {
 
   idCategoria: any;
   afiliados = [];
+  backup = [];
   constructor(private activatedRoute: ActivatedRoute,
               public navCtrl: NavController,
               private requestServ: RequestService,
@@ -27,11 +28,16 @@ export class AfiliadosPage implements OnInit {
     const response = await this.requestServ.getAfiliadosByCategoria(this.idCategoria);
     if (response[0]) {
       this.afiliados = response[1];
+      this.backup = response[1];
     }
   }
 
   buscar(e: any) {
-
+    if (e.detail.value.length === 0 ) {
+      this.afiliados = this.backup;
+      return;
+    }
+    this.afiliados = this.backup.filter( (info: any) => info.nombre_afiliado.toLowerCase().indexOf(e.detail.value.toLowerCase()) > -1);
   }
 
   goProductos(afiliado: any) {

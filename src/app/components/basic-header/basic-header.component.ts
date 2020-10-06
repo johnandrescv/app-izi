@@ -45,7 +45,7 @@ export class BasicHeaderComponent implements OnInit {
   }
 
   async getOrdenesActivas() {
-    const response = await this.requestServ.getOrdenesActivas();
+    const response = await this.requestServ.getOrdenes('ordenes/activas');
     if (response[0]) {
       this.storageServ.ordenes = response[1].cantidad;
     }
