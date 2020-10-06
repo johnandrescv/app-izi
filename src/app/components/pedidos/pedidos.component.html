@@ -1,4 +1,4 @@
-<app-detail-header title="Carrito de Compras" isModal="true"></app-detail-header>
+<app-detail-header [title]="(url !== 'ordenes') ? 'Ordenes Activas' : 'Historial de Ordenes'" isModal="true"></app-detail-header>
 <ion-content color="light">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content pullingIcon="chevron-down-circle-outline"></ion-refresher-content>
