@@ -23,7 +23,7 @@
             <h2><strong>Datos de facturación</strong></h2>
           </ion-label>
         </ion-item>
-        <ion-item (click)="datosFacturacion()" class="mb-10" detail>
+        <ion-item (click)="goModal(1)" class="mb-10" detail>
           <ion-avatar slot="start">
             <img src="./assets/images/menu06.png">
           </ion-avatar>
@@ -55,15 +55,15 @@
             <h2><strong>Mis órdenes</strong></h2>
           </ion-label>
         </ion-item>
-        <ion-item class="mb-10" detail>
+        <ion-item (click)="goModal(2)" class="mb-10" detail>
           <ion-avatar slot="start">
             <img src="./assets/images/menu01.png">
           </ion-avatar>
           <ion-label>
-            <h3>Pedido Actual</h3>
+            <h3>Pedidos Activos</h3>
           </ion-label>
         </ion-item>
-        <ion-item class="mb-10" detail>
+        <ion-item (click)="goModal(3)" class="mb-10" detail>
           <ion-avatar slot="start">
             <img src="./assets/images/menu03.png">
           </ion-avatar>

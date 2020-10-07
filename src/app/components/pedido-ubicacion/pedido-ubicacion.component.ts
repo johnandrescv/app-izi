@@ -32,7 +32,7 @@ export class PedidoUbicacionComponent implements OnInit, OnDestroy {
 
   chargeMap() {
     const mapOptions = {
-      center: this.position,
+      center: new google.maps.LatLng(this.position[0], this.position[1]),
       zoom: 15,
       panControl: false,
       mapTypeControl: false,
@@ -64,7 +64,6 @@ export class PedidoUbicacionComponent implements OnInit, OnDestroy {
 
   async getUbicacion(loading = false) {
     const response = await this.requestServ.getUbicacionOrden(this.orden.id_orden, loading);
-    console.log("UBICACION", response);
     if (response[0]) {
       const result = [response[1].latitud, response[1].longitud];
       this.conf = {
@@ -90,7 +89,7 @@ export class PedidoUbicacionComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     clearInterval(this.interval);
   }
 

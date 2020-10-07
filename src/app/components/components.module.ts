@@ -20,9 +20,10 @@ import { AutosizeModule } from 'ngx-autosize';
 import { ChatComponent } from './chat/chat.component';
 import { PedidoUbicacionComponent } from './pedido-ubicacion/pedido-ubicacion.component';
 import { PedidoTrackingComponent } from './pedido-tracking/pedido-tracking.component';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent, PedidosComponent, NoDataComponent, PedidoDetalleComponent, PedidoResumenComponent, ChatComponent, PedidoUbicacionComponent, PedidoTrackingComponent],
+  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent, PedidosComponent, NoDataComponent, PedidoDetalleComponent, PedidoResumenComponent, ChatComponent, PedidoUbicacionComponent, PedidoTrackingComponent, RegistroComponent],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
@@ -38,7 +39,8 @@ import { PedidoTrackingComponent } from './pedido-tracking/pedido-tracking.compo
     PedidoResumenComponent,
     ChatComponent,
     PedidoUbicacionComponent,
-    PedidoTrackingComponent
+    PedidoTrackingComponent,
+    RegistroComponent
   ],
   imports: [
     MomentModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { RequestService } from '../../services/request.service';
+import { RegistroComponent } from '../registro/registro.component';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
     contrasena: ''
   }
   constructor(public modalCtrl: ModalController,
-              private requestServ: RequestService) { }
+              private requestServ: RequestService,) { }
 
   ngOnInit() {}
 
@@ -24,5 +25,14 @@ export class LoginComponent implements OnInit {
     if (response) {
       this.modalCtrl.dismiss();
     }
+  }
+
+  async goRegistro() {
+    const modal = await this.modalCtrl.create({
+      component: RegistroComponent,
+      cssClass: 'modal-fullscreen'
+    });
+
+    modal.present();
   }
 }

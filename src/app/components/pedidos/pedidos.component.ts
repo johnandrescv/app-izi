@@ -11,7 +11,7 @@ import { PedidoDetalleComponent } from '../pedido-detalle/pedido-detalle.compone
 })
 export class PedidosComponent implements OnInit {
 
-  @Input() url = 'ordenes'
+  @Input() url = 'ordenes';
   ordenes = [];
   estados = {
     FCS: {texto: 'Confirmando Orden', color: 'warning', active: false},
@@ -23,7 +23,7 @@ export class PedidosComponent implements OnInit {
     C: {texto: 'Orden cancelada', color: 'danger', active: false},
     E: {texto: 'Orden eliminadada', color: 'danger', active: false},
     T: {texto: 'Orden Terminada', color: 'success', active: false},
-  }
+  };
   loading = false;
   constructor(private requestServ: RequestService,
               private modalCtrl: ModalController,
@@ -38,7 +38,7 @@ export class PedidosComponent implements OnInit {
     await this.controllserServ.showLoading('Cargando...');
     const response = await this.requestServ.getOrdenes(this.url);
     if (response[0]) {
-      this.ordenes = response[1].ordenes;
+      this.ordenes = (this.url !== 'ordenes') ? response[1].ordenes : response[1];
       this.controllserServ.loading.dismiss();
       this.loading = false;
     }
