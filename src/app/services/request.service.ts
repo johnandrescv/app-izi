@@ -80,7 +80,7 @@ export class RequestService {
   async recoverPassword(data: string) {
     await this.controllersServ.showLoading('Actualizando contraseña...');
     return new Promise(resolve => {
-      this.http.put(`${environment.apiUrl}/verificar/numero`, data).subscribe((response: any) => {
+      this.http.put(`${environment.apiUrl}/recuperar/contrasena/update`, data).subscribe((response: any) => {
         resolve(true);
         this.controllersServ.successToast(response.respuesta);
         this.controllersServ.loading.dismiss();
