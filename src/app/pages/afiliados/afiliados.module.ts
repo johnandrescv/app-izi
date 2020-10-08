@@ -13,9 +13,23 @@ import { DatosFacturacionComponent } from '../../components/datos-facturacion/da
 import { PedidosComponent } from '../../components/pedidos/pedidos.component';
 import { PedidoDetalleComponent } from '../../components/pedido-detalle/pedido-detalle.component';
 import { ChatComponent } from '../../components/chat/chat.component';
+import { PoliticasComponent } from 'src/app/components/politicas/politicas.component';
+import { RecoverComponent } from 'src/app/components/recover/recover.component';
+import { PerfilComponent } from 'src/app/components/perfil/perfil.component';
+import { AyudaComponent } from 'src/app/components/ayuda/ayuda.component';
 
 @NgModule({
-  entryComponents: [MenuComponent, DatosFacturacionComponent, PedidosComponent, PedidoDetalleComponent, ChatComponent],
+  entryComponents: [
+    MenuComponent, 
+    DatosFacturacionComponent, 
+    PedidosComponent, 
+    PedidoDetalleComponent, 
+    ChatComponent,
+    PoliticasComponent,
+    RecoverComponent,
+    PerfilComponent,
+    AyudaComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

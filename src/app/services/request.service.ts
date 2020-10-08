@@ -32,6 +32,66 @@ export class RequestService {
     });
   }
 
+  async registrarUsuario(data: string) {
+    await this.controllersServ.showLoading('Enviando mensaje de confirmación...');
+    return new Promise(resolve => {
+      this.http.post(`${environment.apiUrl}/create`, data).subscribe((response: any) => {
+        resolve(true);
+        this.controllersServ.successToast(response.respuesta);
+        this.controllersServ.loading.dismiss();
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        this.controllersServ.loading.dismiss();
+        resolve(false);
+      });
+    });
+  }
+
+  async verificarUsuario(data: string) {
+    await this.controllersServ.showLoading('Registrando cuenta...');
+    return new Promise(resolve => {
+      this.http.put(`${environment.apiUrl}/verificar/numero`, data).subscribe((response: any) => {
+        resolve(true);
+        this.controllersServ.successToast(response.respuesta);
+        this.controllersServ.loading.dismiss();
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        this.controllersServ.loading.dismiss();
+        resolve(false);
+      });
+    });
+  }
+
+  async recoverRequest(data: string) {
+    await this.controllersServ.showLoading('Verificando cuenta...');
+    return new Promise(resolve => {
+      this.http.put(`${environment.apiUrl}/contrasena`, data).subscribe((response: any) => {
+        resolve(true);
+        this.controllersServ.successToast(response.respuesta);
+        this.controllersServ.loading.dismiss();
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        this.controllersServ.loading.dismiss();
+        resolve(false);
+      });
+    });
+  }
+  
+  async recoverPassword(data: string) {
+    await this.controllersServ.showLoading('Actualizando contraseña...');
+    return new Promise(resolve => {
+      this.http.put(`${environment.apiUrl}/verificar/numero`, data).subscribe((response: any) => {
+        resolve(true);
+        this.controllersServ.successToast(response.respuesta);
+        this.controllersServ.loading.dismiss();
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        this.controllersServ.loading.dismiss();
+        resolve(false);
+      });
+    });
+  }
+
   async checkUbicacion(data: any) {
     await this.controllersServ.showLoading('Verificando ubicación...');
     return new Promise(resolve => {
@@ -55,6 +115,23 @@ export class RequestService {
       }, (error: any) => {
         this.controllersServ.loading.dismiss();
         this.controllersServ.errorToast(error.error.respuesta);
+        resolve([false]);
+      });
+    });
+  }
+
+  async editarUsuario(data: string) {
+    await this.controllersServ.showLoading('Actualizando perfil...');
+    const headers = new HttpHeaders({
+      token: this.storageServ.usuario.apiKey
+    });
+    return new Promise(resolve => {
+      this.http.put(`${environment.apiUrl}/update`, data, {headers}).subscribe((response: any) => {
+        resolve([true, response.respuesta]);
+        this.controllersServ.loading.dismiss();
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        this.controllersServ.loading.dismiss();
         resolve([false]);
       });
     });

@@ -21,14 +21,18 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.getOrdenesActivas();
+    if (this.storageServ.usuario) {
+      this.getOrdenesActivas();
+    }
   }
 
   async getCategorias() {
     const response = await this.requestServ.getCategorias();
     if (response[0]) {
       this.categorias = response[1];
-      this.getOrdenesActivas();
+      if (this.storageServ.usuario) {
+        this.getOrdenesActivas();
+      }
     }
   }
 

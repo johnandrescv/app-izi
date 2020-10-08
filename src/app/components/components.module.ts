@@ -21,9 +21,34 @@ import { ChatComponent } from './chat/chat.component';
 import { PedidoUbicacionComponent } from './pedido-ubicacion/pedido-ubicacion.component';
 import { PedidoTrackingComponent } from './pedido-tracking/pedido-tracking.component';
 import { RegistroComponent } from './registro/registro.component';
+import { PoliticasComponent } from './politicas/politicas.component';
+import { RecoverComponent } from './recover/recover.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
 
 @NgModule({
-  declarations: [BasicHeaderComponent, DetailHeaderComponent, CartFooterComponent, AfiliadoDetailComponent, LoginComponent, CartComponent, MenuComponent, DatosFacturacionComponent, PedidosComponent, NoDataComponent, PedidoDetalleComponent, PedidoResumenComponent, ChatComponent, PedidoUbicacionComponent, PedidoTrackingComponent, RegistroComponent],
+  declarations: [
+    BasicHeaderComponent, 
+    DetailHeaderComponent, 
+    CartFooterComponent, 
+    AfiliadoDetailComponent, 
+    LoginComponent, 
+    CartComponent, 
+    MenuComponent, 
+    DatosFacturacionComponent, 
+    PedidosComponent, 
+    NoDataComponent, 
+    PedidoDetalleComponent, 
+    PedidoResumenComponent, 
+    ChatComponent, 
+    PedidoUbicacionComponent, 
+    PedidoTrackingComponent, 
+    RegistroComponent,
+    PoliticasComponent,
+    RecoverComponent,
+    PerfilComponent,
+    AyudaComponent
+  ],
   exports: [
     BasicHeaderComponent,
     DetailHeaderComponent,
@@ -40,7 +65,11 @@ import { RegistroComponent } from './registro/registro.component';
     ChatComponent,
     PedidoUbicacionComponent,
     PedidoTrackingComponent,
-    RegistroComponent
+    RegistroComponent,
+    PoliticasComponent,
+    RecoverComponent,
+    PerfilComponent,
+    AyudaComponent
   ],
   imports: [
     MomentModule,

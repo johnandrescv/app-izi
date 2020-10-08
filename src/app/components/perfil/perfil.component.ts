@@ -1,48 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { CameraOptions, Camera } from '@ionic-native/camera/ngx';
 import { ActionSheetController, ModalController } from '@ionic/angular';
-import { RequestService } from '../../services/request.service';
 import { StorageService } from '../../services/storage.service';
 import { ControllersService } from '../../services/controllers.service';
-import { PoliticasComponent } from '../politicas/politicas.component';
+import { RequestService } from '../../services/request.service';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.scss'],
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
+  styleUrls: ['./perfil.component.scss'],
 })
-export class RegistroComponent implements OnInit {
+export class PerfilComponent implements OnInit {
 
   usuario = {
-    imagen: '',
     nombre: '',
-    apellido: '',
-    correo: '',
-    clave: '',
-    telefono: ''
+    apellido:'',
+    imagen: '',
   };
-  registro = false;
-  codigo = '';
-  constructor(private camera: Camera,
-              private domsanitizer: DomSanitizer,
+  correo = '';
+  profilePhoto = '';
+  constructor(private storageServ: StorageService,
               private requestServ: RequestService,
+              private camera: Camera,
+              private domsanitizer: DomSanitizer,
               private controllersServ: ControllersService,
               private modalCtrl: ModalController,
               private actionSheetCtrl: ActionSheetController) { }
 
-  ngOnInit() {}
-
-  async registrar() {
-    const copy = {...this.usuario, telefono: `+593${this.usuario.telefono}`};
-    if (this.usuario.imagen === '') {
-      delete copy.imagen;
-    }
-    const body = JSON.stringify(copy);
-    const response = await this.requestServ.registrarUsuario(body);
-    if (response) {
-      this.registro = true;
-    }
+  ngOnInit() {
+    this.usuario.nombre = this.storageServ.usuario.nombre;
+    this.usuario.apellido = this.storageServ.usuario.apellido;
+    this.correo = this.storageServ.usuario.correo;
+    this.profilePhoto = this.storageServ.usuario.imagen;
   }
 
   async presentarOpciones() {
@@ -95,20 +85,19 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  async validar() {
-    const copy = {codigo_acceso: this.codigo, correo: this.usuario.correo};
+  async editar() {
+    const copy = {...this.usuario};
+    if (this.usuario.imagen === '') {
+      delete copy.imagen;
+    }
     const body = JSON.stringify(copy);
-    const response = await this.requestServ.verificarUsuario(body);
-    if (response) {
+    const response = await this.requestServ.editarUsuario(body);
+    if (response[0]) {
+      this.storageServ.usuario.nombre = response[1].nombre;
+      this.storageServ.usuario.apellido = response[1].apellido;
+      this.storageServ.usuario.imagen = response[1].imagen;
+      this.storageServ.guardarUsuario(this.storageServ.usuario);
       this.modalCtrl.dismiss();
     }
-  }
-
-  async openTerminos() {
-    const modal = await this.modalCtrl.create({
-      component: PoliticasComponent,
-      cssClass: 'modal-fullscreen'
-    });
-    modal.present();
   }
 }

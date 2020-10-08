@@ -17,7 +17,7 @@
                         <ion-input type="password" [(ngModel)]="usuario.contrasena" name="clave"
                             placeholder="Ingresa su contraseña" required></ion-input>
                     </ion-item>
-                    <ion-button color="link" expand="block" fill="clear"> ¿Olvidaste tu contraseña?</ion-button>
+                    <ion-button color="link" expand="block" fill="clear" (click)="recoverPass()"> ¿Olvidaste tu contraseña?</ion-button>
                 </ion-col>
                 <ion-col size="12" class="mt-10">
                     <ion-button color="primary" expand="block" type="submit" [disabled]="!formulario.valid" strong>

@@ -19,7 +19,6 @@ export class BasicHeaderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.getOrdenesActivas();
   }
 
   goUbicacion() {
@@ -41,7 +40,9 @@ export class BasicHeaderComponent implements OnInit {
     }
     modal.present();
     await modal.onWillDismiss();
-    this.getOrdenesActivas();
+    if (this.storageServ.usuario) {
+      this.getOrdenesActivas();
+    }
   }
 
   async getOrdenesActivas() {

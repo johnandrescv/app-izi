@@ -3,6 +3,9 @@ import { StorageService } from '../../services/storage.service';
 import { ModalController } from '@ionic/angular';
 import { DatosFacturacionComponent } from '../datos-facturacion/datos-facturacion.component';
 import { PedidosComponent } from '../pedidos/pedidos.component';
+import { PoliticasComponent } from '../politicas/politicas.component';
+import { PerfilComponent } from '../perfil/perfil.component';
+import { AyudaComponent } from '../ayuda/ayuda.component';
 
 @Component({
   selector: 'app-menu',
@@ -39,6 +42,27 @@ export class MenuComponent implements OnInit {
       case 3:
       modal = await this.modalCtrl.create({
         component: PedidosComponent,
+        cssClass: 'modal-fullscreen'
+      });
+      break;
+
+      case 4:
+      modal = await this.modalCtrl.create({
+        component: PoliticasComponent,
+        cssClass: 'modal-fullscreen'
+      });
+      break;
+
+      case 5:
+      modal = await this.modalCtrl.create({
+        component: PerfilComponent,
+        cssClass: 'modal-fullscreen'
+      });
+      break;
+
+      case 6:
+      modal = await this.modalCtrl.create({
+        component: AyudaComponent,
         cssClass: 'modal-fullscreen'
       });
       break;
