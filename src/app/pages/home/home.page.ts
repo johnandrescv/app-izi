@@ -57,8 +57,8 @@ export class HomePage implements OnInit {
       return;
     }
     const body = {
-      lat: this.storageServ.ubicacion.latitud,
-      lng: this.storageServ.ubicacion.longitud,
+      lat: String(this.storageServ.ubicacion.latitud),
+      lng: String(this.storageServ.ubicacion.longitud),
       filtro: event.detail.value
     };
     this.buscando = true;
