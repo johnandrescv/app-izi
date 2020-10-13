@@ -22,5 +22,9 @@
     <param name="ios-package" value="SQLitePlugin"/>
   </feature>
 
+  <feature name="OneSignalPush">
+    <param name="ios-package" value="OneSignalPush"/>
+  </feature>
+
   
 </widget>

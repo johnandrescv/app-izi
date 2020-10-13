@@ -20,10 +20,10 @@ import { AyudaComponent } from 'src/app/components/ayuda/ayuda.component';
 
 @NgModule({
   entryComponents: [
-    MenuComponent, 
-    DatosFacturacionComponent, 
-    PedidosComponent, 
-    PedidoDetalleComponent, 
+    MenuComponent,
+    DatosFacturacionComponent,
+    PedidosComponent,
+    PedidoDetalleComponent,
     ChatComponent,
     PoliticasComponent,
     RecoverComponent,

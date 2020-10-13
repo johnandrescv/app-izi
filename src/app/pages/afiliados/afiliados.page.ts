@@ -16,8 +16,7 @@ export class AfiliadosPage implements OnInit {
   backup = [];
   constructor(private activatedRoute: ActivatedRoute,
               public navCtrl: NavController,
-              private requestServ: RequestService,
-              private storageServ: StorageService) { }
+              private requestServ: RequestService) { }
 
   ngOnInit() {
     this.idCategoria = this.activatedRoute.snapshot.paramMap.get('id');
@@ -38,10 +37,5 @@ export class AfiliadosPage implements OnInit {
       return;
     }
     this.afiliados = this.backup.filter( (info: any) => info.nombre_afiliado.toLowerCase().indexOf(e.detail.value.toLowerCase()) > -1);
-  }
-
-  goProductos(afiliado: any) {
-    this.storageServ.afiliado = afiliado;
-    this.navCtrl.navigateForward(['/productos', afiliado.id_afiliado_sucursal]);
   }
 }

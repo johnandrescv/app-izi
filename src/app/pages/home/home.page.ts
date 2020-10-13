@@ -12,10 +12,12 @@ import { StorageService } from '../../services/storage.service';
 export class HomePage implements OnInit {
 
   categorias = [];
+  afiliados = [];
+  buscando = false;
   constructor(private requestServ: RequestService,
               public storageServ: StorageService,
               private modalCtrl: ModalController) { }
-  
+
   ngOnInit() {
     this.getCategorias();
   }
@@ -48,8 +50,23 @@ export class HomePage implements OnInit {
     modal.present();
   }
 
-  buscar(e: any) {
-
+  async buscar(event: any) {
+    this.afiliados = [];
+    if (event.detail.value.length === 0 ) {
+      this.afiliados = [];
+      return;
+    }
+    const body = {
+      lat: this.storageServ.ubicacion.latitud,
+      lng: this.storageServ.ubicacion.longitud,
+      filtro: event.detail.value
+    };
+    this.buscando = true;
+    const response = await this.requestServ.buscarAfiliados(JSON.stringify(body));
+    if (response[0]) {
+      this.afiliados = response[1];
+    }
+    this.buscando = false;
   }
 
   async getOrdenesActivas() {

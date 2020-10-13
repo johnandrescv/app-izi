@@ -12,11 +12,13 @@ export class RequestService {
   ordenes = [];
   constructor(private http: HttpClient,
               private storageServ: StorageService,
+              private storage: Storage,
               private controllersServ: ControllersService) { }
 
   async login(body: any) {
     await this.controllersServ.showLoading('Validando los datos...');
-    return new Promise((resolve) => {
+    return new Promise(async (resolve) => {
+      const token = await this.storage.get('pushtoken');
       this.http.put(`${environment.apiUrl}/login`, body).subscribe((data: any) => {
         const user = {...data.respuesta.usuario, apiKey: data.respuesta.token};
         this.storageServ.guardarUsuario(user);
@@ -76,7 +78,7 @@ export class RequestService {
       });
     });
   }
-  
+
   async recoverPassword(data: string) {
     await this.controllersServ.showLoading('Actualizando contraseña...');
     return new Promise(resolve => {
@@ -300,6 +302,17 @@ export class RequestService {
       }, (error: any) => {
         this.controllersServ.errorToast(error.error.respuesta);
         resolve(false);
+      });
+    });
+  }
+
+  buscarAfiliados(data: string) {
+    return new Promise(resolve => {
+      this.http.post(`${environment.apiUrl}/sucursales`, data).subscribe((response: any) => {
+        resolve([true, response.respuesta]);
+      }, (error: any) => {
+        this.controllersServ.errorToast(error.error.respuesta);
+        resolve([false]);
       });
     });
   }

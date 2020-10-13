@@ -25,29 +25,31 @@ import { PoliticasComponent } from './politicas/politicas.component';
 import { RecoverComponent } from './recover/recover.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
+import { AfiliadosCardsComponent } from './afiliados-cards/afiliados-cards.component';
 
 @NgModule({
   declarations: [
-    BasicHeaderComponent, 
-    DetailHeaderComponent, 
-    CartFooterComponent, 
-    AfiliadoDetailComponent, 
-    LoginComponent, 
-    CartComponent, 
-    MenuComponent, 
-    DatosFacturacionComponent, 
-    PedidosComponent, 
-    NoDataComponent, 
-    PedidoDetalleComponent, 
-    PedidoResumenComponent, 
-    ChatComponent, 
-    PedidoUbicacionComponent, 
-    PedidoTrackingComponent, 
+    BasicHeaderComponent,
+    DetailHeaderComponent,
+    CartFooterComponent,
+    AfiliadoDetailComponent,
+    LoginComponent,
+    CartComponent,
+    MenuComponent,
+    DatosFacturacionComponent,
+    PedidosComponent,
+    NoDataComponent,
+    PedidoDetalleComponent,
+    PedidoResumenComponent,
+    ChatComponent,
+    PedidoUbicacionComponent,
+    PedidoTrackingComponent,
     RegistroComponent,
     PoliticasComponent,
     RecoverComponent,
     PerfilComponent,
-    AyudaComponent
+    AyudaComponent,
+    AfiliadosCardsComponent
   ],
   exports: [
     BasicHeaderComponent,
@@ -69,7 +71,8 @@ import { AyudaComponent } from './ayuda/ayuda.component';
     PoliticasComponent,
     RecoverComponent,
     PerfilComponent,
-    AyudaComponent
+    AyudaComponent,
+    AfiliadosCardsComponent
   ],
   imports: [
     MomentModule,

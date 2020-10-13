@@ -17,6 +17,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 import { MomentModule } from 'ngx-moment';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +37,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
     Geolocation,
     NativeGeocoder,
     CallNumber,
+    OneSignal,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

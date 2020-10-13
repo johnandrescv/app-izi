@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
+import { PushService } from './services/push.service';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private storageServ: StorageService,
+    private pushServ: PushService,
     private router: Router
   ) {
       this.initializeApp();
@@ -26,6 +28,7 @@ export class AppComponent {
     this.storageServ.cargarTutorial().then(async (tutorial) => {
       this.setRoot(tutorial);
       this.platform.ready().then(() => {
+        this.pushServ.configuracionInicial();
         this.statusBar.styleDefault();
         this.splashScreen.hide();
       });
