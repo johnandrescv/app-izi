@@ -1,8 +1,9 @@
 import { StorageService } from './storage.service';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ControllersService } from './controllers.service';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
