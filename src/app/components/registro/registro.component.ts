@@ -34,7 +34,7 @@ export class RegistroComponent implements OnInit {
   ngOnInit() {}
 
   async registrar() {
-    const copy = {...this.usuario, telefono: `+593${this.usuario.telefono}`};
+    const copy = {...this.usuario, telefono: `+593${this.usuario.telefono}`, imagen: `data:image/jpeg;base64,${this.usuario.imagen}`};
     if (this.usuario.imagen === '') {
       delete copy.imagen;
     }

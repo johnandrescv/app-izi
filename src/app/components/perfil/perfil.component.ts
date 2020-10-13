@@ -86,7 +86,7 @@ export class PerfilComponent implements OnInit {
   }
 
   async editar() {
-    const copy = {...this.usuario};
+    const copy = {...this.usuario, imagen: `data:image/jpeg;base64,${this.usuario.imagen}`};
     if (this.usuario.imagen === '') {
       delete copy.imagen;
     }

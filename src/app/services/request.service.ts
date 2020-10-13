@@ -19,8 +19,12 @@ export class RequestService {
   async login(body: any) {
     await this.controllersServ.showLoading('Validando los datos...');
     return new Promise(async (resolve) => {
+      let params = '';
       const token = await this.storage.get('pushtoken');
-      this.http.put(`${environment.apiUrl}/login`, body).subscribe((data: any) => {
+      if (token) {
+        params = `?token=${token}`;
+      }
+      this.http.put(`${environment.apiUrl}/login${params}`, body).subscribe((data: any) => {
         const user = {...data.respuesta.usuario, apiKey: data.respuesta.token};
         this.storageServ.guardarUsuario(user);
         this.controllersServ.loading.dismiss();
