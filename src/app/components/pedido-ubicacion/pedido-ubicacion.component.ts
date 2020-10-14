@@ -20,6 +20,7 @@ export class PedidoUbicacionComponent implements OnInit, OnDestroy {
   interval: any;
   position = [-2.109928, -79.872109];
   showMap = false;
+  tiempo = '';
   constructor(private modalCtrl: ModalController,
               private requestServ: RequestService,
               private callNumber: CallNumber) { }
@@ -65,7 +66,7 @@ export class PedidoUbicacionComponent implements OnInit, OnDestroy {
   async getUbicacion(loading = false) {
     const response = await this.requestServ.getUbicacionOrden(this.orden.id_orden, loading);
     if (response[0]) {
-      const result = [response[1].latitud, response[1].longitud];
+      const result = [response[1].ubicacion_repartidor.latitud, response[1].ubicacion_repartidor.longitud];
       this.conf = {
         contador: 0,
         deltaLat: (result[0] - this.position[0]) / 100,
@@ -73,6 +74,7 @@ export class PedidoUbicacionComponent implements OnInit, OnDestroy {
         delay: 10,
       };
       this.moveMarker();
+      this.calculateDistance(result);
       this.showMap = true;
     }
   }
@@ -97,5 +99,21 @@ export class PedidoUbicacionComponent implements OnInit, OnDestroy {
     this.callNumber.callNumber(this.orden.repartidor.telefono, true)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
+  }
+
+  calculateDistance(coords: any) {
+    const origin = new google.maps.LatLng(coords[0], coords[1]);
+    const destination = new google.maps.LatLng(Number(this.orden.cliente.direccion.latitud), Number(this.orden.cliente.direccion.longitud));
+    const service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix(
+      {
+        origins: [origin],
+        destinations: [destination],
+        travelMode: 'DRIVING',
+      }, (response: any, status: any) => {
+        if (response.rows.length > 0) {
+          this.tiempo = response.rows[0].elements[0].duration.text;
+        }
+      });
   }
 }
