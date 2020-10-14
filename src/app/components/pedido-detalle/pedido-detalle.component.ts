@@ -18,10 +18,11 @@ export class PedidoDetalleComponent implements OnInit {
     OPRL: {texto: 'Repartidor Listo', color: 'primary', active: true, refresh: true},
     OLBR: {texto: 'Buscando repartidor', color: 'primary', active: false, refresh: true},
     OLRC: {texto: 'Repartidor en camino', color: 'primary', active: true, refresh: true},
+    RCU: {texto: 'Repartidor entregando pedido', color: 'primary', active: true},
     C: {texto: 'Orden cancelada', color: 'danger', active: false, refresh: false},
     E: {texto: 'Orden eliminadada', color: 'danger', active: false, refresh: false},
     T: {texto: 'Orden Terminada', color: 'success', active: false, refresh: false},
-  }
+  };
   constructor(private requestServ: RequestService) { }
 
   ngOnInit() {
